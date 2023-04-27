@@ -3,15 +3,22 @@ import React, { useRef, useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-mapboxgl.accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsZ3VsczI5OTA5OGszZ3BnandibnZzNDEifQ.MO-Or2TkPYIgt-unEcUXYQ";
+export function getServerSideProps() {
+  return {
+    props: {
+      accessToken: process.env.MAPBOX_TOKEN,
+    },
+  };
+}
 
-export default function Home() {
+export default function Home({ accessToken }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-70.9);
   const [lat, setLat] = useState(42.35);
   const [zoom, setZoom] = useState(9);
+
+  mapboxgl.accessToken = accessToken;
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
