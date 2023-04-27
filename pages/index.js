@@ -2,6 +2,7 @@ import Head from "next/head";
 import React, { useRef, useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import styled from "styled-components";
 
 export function getServerSideProps() {
   return {
@@ -21,23 +22,21 @@ export default function Home({ accessToken }) {
   mapboxgl.accessToken = accessToken;
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
       center: [lng, lat],
       zoom: zoom,
     });
-  });
+  }, []);
 
   useEffect(() => {
-    if (!map.current) return; // wait for map to initialize
     map.current.on("move", () => {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
-  });
+  }, []);
 
   return (
     <>
@@ -49,12 +48,29 @@ export default function Home({ accessToken }) {
       </Head>
       <main>
         <div>
-          <div className="sidebar">
+          <MapBoxSidebar>
             Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-          </div>
-          <div ref={mapContainer} className="map-container" />
+          </MapBoxSidebar>
+          <Map ref={mapContainer} />
         </div>
       </main>
     </>
   );
 }
+
+const MapBoxSidebar = styled.div`
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 12px;
+  border-radius: 4px;
+`;
+
+const Map = styled.div`
+  height: 100vh;
+`;
