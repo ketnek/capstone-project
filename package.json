@@ -10,13 +10,16 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.4.1",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "mapbox-gl": "^2.14.1",
     "next": "13.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.10"
+    "react-icons": "^4.8.0",
+    "styled-components": "^5.3.10",
+    "swr": "^2.1.5"
   },
   "devDependencies": {
     "@svgr/webpack": "^7.0.0",
