@@ -5,13 +5,13 @@ import {
   MagnifyingGlass,
 } from "./StyledSearchPlaces";
 
-export default function SearchPlaces({ handleSearchSubmit }) {
+export default function SearchPlaces({ onSearchSubmit }) {
   return (
-    <SearchForm onSubmit={(event) => handleSearchSubmit(event)}>
-      <SearchButton type="submit">
+    <SearchForm onSubmit={(event) => onSearchSubmit(event)}>
+      <SearchButton aria-label="search-button" type="submit">
         <MagnifyingGlass />
       </SearchButton>
-      <SearchInput type="text" placeholder="Search for places" />
+      <SearchInput type="text" placeholder="Search for places" name="search" />
     </SearchForm>
   );
 }

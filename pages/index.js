@@ -1,12 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
 import Map from "@/components/Map/Map";
-import MapWrapper from "@/components/MapWrapper/StyledMapWrapper";
 import SearchPlaces from "@/components/SearchPlaces/SearchPlaces";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDVybDl5azA0ZzYzZ21wcmJvZnlxeGYifQ.7xOZhYeVEcLNK833qEUjUw";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDMxbTEzZDA2cHAzaG81NzZ4N3V5M3AifQ.HVcH5lzS9wNHw4z0piyXxg";
 
 export default function Home() {
   const [lng, setLng] = useState(10.000654);
@@ -30,9 +29,10 @@ export default function Home() {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const inputValue = form.elements[1].value;
+
+    const inputValue = form.search.value;
     getNewDestination(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?proximity=ip&access_token=${accessToken}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${inputValue}.json?access_token=${accessToken}`
     );
   };
 
@@ -46,16 +46,14 @@ export default function Home() {
       </Head>
 
       <main>
-        <MapWrapper>
-          <Map
-            accessToken={accessToken}
-            lng={lng}
-            lat={lat}
-            zoom={zoom}
-            center={center}
-          />
-          <SearchPlaces handleSearchSubmit={handleSearchSubmit} />
-        </MapWrapper>
+        <Map
+          accessToken={accessToken}
+          lng={lng}
+          lat={lat}
+          zoom={zoom}
+          center={center}
+        />
+        <SearchPlaces onSearchSubmit={handleSearchSubmit} />
       </main>
     </>
   );
