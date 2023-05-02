@@ -23,6 +23,7 @@ const SearchButton = styled.button`
   width: 20%;
   border: none;
   background-color: inherit;
+  color: black;
 `;
 
 const MagnifyingGlass = styled(FaSistrix)`

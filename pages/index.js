@@ -5,7 +5,7 @@ import SearchPlaces from "@/components/SearchPlaces/SearchPlaces";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDMxbTEzZDA2cHAzaG81NzZ4N3V5M3AifQ.HVcH5lzS9wNHw4z0piyXxg";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDVybDl5azA0ZzYzZ21wcmJvZnlxeGYifQ.7xOZhYeVEcLNK833qEUjUw";
 
 export default function Home() {
   const [lng, setLng] = useState(10.000654);

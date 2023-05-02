@@ -11,7 +11,12 @@ export default function SearchPlaces({ onSearchSubmit }) {
       <SearchButton aria-label="search-button" type="submit">
         <MagnifyingGlass />
       </SearchButton>
-      <SearchInput type="text" placeholder="Search for places" name="search" />
+      <SearchInput
+        type="text"
+        placeholder="Search for places"
+        name="search"
+        aria-label="search-input"
+      />
     </SearchForm>
   );
 }
