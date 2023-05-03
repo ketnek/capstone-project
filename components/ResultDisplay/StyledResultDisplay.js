@@ -9,6 +9,7 @@ const List = styled.ul`
 `;
 
 const Item = styled.li`
+  cursor: pointer;
   padding: 0.5rem 0.5rem;
 `;
 
