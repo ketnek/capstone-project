@@ -20,7 +20,7 @@ export default function Map({ accessToken, lng, lat, zoom, center }) {
 
   useEffect(() => {
     if (center) {
-      map.current.flyTo({ center: center, zoom: 13 });
+      map.current.flyTo({ center: center, zoom: 14 });
     }
   }, [center]);
 
