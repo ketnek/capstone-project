@@ -1,6 +1,6 @@
 import StyledMap from "./StyledMap";
-import React, { useRef, useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
+import React, { useRef, useEffect } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
 export default function Map({ accessToken, lng, lat, zoom, center }) {

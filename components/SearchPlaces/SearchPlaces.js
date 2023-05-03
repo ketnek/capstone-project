@@ -1,11 +1,16 @@
 import {
+  SearchForm,
   SearchInput,
   SearchButton,
-  SearchForm,
   MagnifyingGlass,
 } from "./StyledSearchPlaces";
 
-export default function SearchPlaces({ onSearchSubmit }) {
+export default function SearchPlaces({
+  searchValue,
+  onInputChange,
+  onSearchSubmit,
+  inputPlaceholder,
+}) {
   return (
     <SearchForm onSubmit={(event) => onSearchSubmit(event)}>
       <SearchButton aria-label="search-button" type="submit">
@@ -13,9 +18,11 @@ export default function SearchPlaces({ onSearchSubmit }) {
       </SearchButton>
       <SearchInput
         type="text"
-        placeholder="Search for places"
         name="search"
+        value={searchValue}
         aria-label="search-input"
+        placeholder={inputPlaceholder}
+        onChange={(event) => onInputChange(event)}
       />
     </SearchForm>
   );
