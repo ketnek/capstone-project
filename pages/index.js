@@ -5,7 +5,7 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDY5MG1rdjAzdGQzZW5zanhqbWU5cmoifQ.jOgkeSYbOWlO7yvv_sA0Dg";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDdxaDgzNzAxN2wzZnFtaXQ0NW41NmMifQ.uKSRkOjJ2_Enua9-5gVOIQ";
 
 export default function Home() {
   const [zoom, setZoom] = useState(9);
