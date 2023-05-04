@@ -47,7 +47,7 @@ export default function Home() {
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
     getNewDestination(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?country=de&language=de&access_token=${accessToken}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?country=de&types=place,address,postcode,poi&language=de&access_token=${accessToken}`
     );
   };
 
