@@ -2,10 +2,6 @@ import styled from "styled-components";
 import { FaSistrix } from "react-icons/fa";
 
 const SearchForm = styled.form`
-  position: absolute;
-  bottom: 5rem;
-  left: 50%;
-  transform: translate(-50%);
   height: 2.5rem;
   width: 15rem;
   display: flex;
@@ -23,12 +19,12 @@ const SearchButton = styled.button`
   width: 20%;
   border: none;
   background-color: inherit;
-  color: black;
 `;
 
 const MagnifyingGlass = styled(FaSistrix)`
-  height: 80%;
   width: 80%;
+  height: 80%;
+  color: black;
 `;
 
 const SearchInput = styled.input`
