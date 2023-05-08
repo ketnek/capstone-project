@@ -61,7 +61,7 @@ export default function Map() {
     const response = await fetch(url);
     const data = await response.json();
     setNewRouteData(data);
-    console.log(data);
+
     // Handle errors
     if (!response) {
       alert(
