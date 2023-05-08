@@ -1,6 +1,16 @@
 import styled from "styled-components";
 
-export default styled.div`
+const StyledMap = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
+const Loading = styled.p`
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+`;
+
+export { StyledMap, Loading };
