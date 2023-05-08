@@ -43,17 +43,14 @@ export default function Map() {
     });
   }, []);
 
-  // Format the data for the Map Matching query
+  // Format the data for the Map Directions query
   function updateRoute() {
     const profile = "cycling";
     // Format the coordinates
     const newCoords = routeCoords.join(";");
-    // Set the radius for each coordinate pair to 25 meters
-    const radius = routeCoords.map(() => 25);
-    const radiuses = radius.join(";");
 
     getMatch(
-      `https://api.mapbox.com/matching/v5/mapbox/${profile}/${newCoords}?geometries=geojson&radiuses=${radiuses}&steps=true&access_token=${mapboxgl.accessToken}`
+      `https://api.mapbox.com/directions/v5/mapbox/${profile}/${newCoords}?geometries=geojson&language=de&overview=full&steps=true&access_token=${mapboxgl.accessToken}`
     );
   }
 
@@ -64,7 +61,7 @@ export default function Map() {
     const response = await fetch(url);
     const data = await response.json();
     setNewRouteData(data);
-
+    console.log(data);
     // Handle errors
     if (!response) {
       alert(
@@ -74,7 +71,8 @@ export default function Map() {
     }
 
     // Get the coordinates from the response
-    const coords = data.matchings[0].geometry;
+    const coords = data.routes[0].geometry;
+    // const coords = data.matchings[0].geometry;
 
     // Draw the route on the map
     setCalculated(true);
