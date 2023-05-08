@@ -72,12 +72,12 @@ export default function Map() {
 
     // Get the coordinates from the response
     const coords = data.routes[0].geometry;
-    // const coords = data.matchings[0].geometry;
 
     // Draw the route on the map
+    addRoute(coords);
+
     setCalculated(true);
     setIsLoading(false);
-    addRoute(coords);
   }
 
   // Draw Route on the Map
