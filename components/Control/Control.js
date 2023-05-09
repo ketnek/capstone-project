@@ -1,4 +1,4 @@
-import { Container } from "./StyledControl";
+import Container from "./StyledControl";
 import ControlButton from "../ControlButton/ControlButton";
 
 export default function Control({
@@ -8,25 +8,24 @@ export default function Control({
   isLoading,
   calculated,
 }) {
-  let saveOrCreateButton;
-  if (markers.length > 1) {
-    if (calculated) {
-      saveOrCreateButton = <ControlButton job="save" />;
-    } else {
-      saveOrCreateButton = (
+  return (
+    <Container>
+      {markers.length > 1 && (
         <ControlButton
           job="create"
           handler={onCreate}
           isLoading={isLoading}
           calculated={calculated}
         />
-      );
-    }
-  }
-  return (
-    <Container>
-      {saveOrCreateButton}
-      <ControlButton handler={onDelete} job="delete" />
+      )}
+      {calculated && !isLoading && <ControlButton job="save" />}
+
+      <ControlButton
+        isLoading={isLoading}
+        calculated={calculated}
+        handler={onDelete}
+        job="delete"
+      />
     </Container>
   );
 }
