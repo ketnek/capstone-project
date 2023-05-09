@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export default styled.div`
   position: absolute;
-  left: 50%;
-  bottom: 5rem;
-  transform: translate(-50%);
+  top: 2rem;
+  right: 2rem;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 `;

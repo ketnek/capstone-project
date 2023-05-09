@@ -1,56 +1,7 @@
 import Head from "next/head";
-import { useState } from "react";
 import Map from "@/components/Map/Map";
-import SearchBar from "@/components/SearchBar/SearchBar";
-
-// Change Token before git push!!!
-const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDdxaDgzNzAxN2wzZnFtaXQ0NW41NmMifQ.uKSRkOjJ2_Enua9-5gVOIQ";
 
 export default function Home() {
-  const [zoom, setZoom] = useState(9);
-  const [lng, setLng] = useState(10.000654);
-  const [lat, setLat] = useState(53.550341);
-  const [center, setCenter] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [inputPlaceholder, setInputPlaceholder] = useState("Search for places");
-
-  // fetch data
-  const getNewDestination = async (url) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        console.error("Loading new destination went wrong!");
-      }
-      const data = await response.json();
-      setSearchResults(data.features);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // all handler
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    setCenter(searchResults[0]?.center);
-    setSearchValue("");
-    setInputPlaceholder(searchResults[0].place_name);
-  };
-
-  const handleClickResult = (resultCords, placeholderText) => {
-    setCenter(resultCords);
-    setSearchValue("");
-    setInputPlaceholder(placeholderText);
-  };
-
-  const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
-    getNewDestination(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?country=de&types=place,address,postcode,poi&language=de&access_token=${accessToken}`
-    );
-  };
-
   return (
     <>
       <Head>
@@ -61,21 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Map
-          lng={lng}
-          lat={lat}
-          zoom={zoom}
-          center={center}
-          accessToken={accessToken}
-        />
-        <SearchBar
-          searchValue={searchValue}
-          searchResults={searchResults}
-          inputPlaceholder={inputPlaceholder}
-          onInputChange={handleInputChange}
-          onClickResult={handleClickResult}
-          onSearchSubmit={handleSearchSubmit}
-        />
+        <Map />
       </main>
     </>
   );
