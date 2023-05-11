@@ -2,6 +2,7 @@ import Container from "./StyledControl";
 import ControlButton from "../ControlButton/ControlButton";
 
 export default function Control({
+  onSave,
   markers,
   onCreate,
   onDelete,
@@ -18,7 +19,9 @@ export default function Control({
           calculated={calculated}
         />
       )}
-      {calculated && !isLoading && <ControlButton job="save" />}
+      {calculated && !isLoading && (
+        <ControlButton handler={onSave} job="save" />
+      )}
 
       <ControlButton
         isLoading={isLoading}

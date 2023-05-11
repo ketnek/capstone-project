@@ -4,10 +4,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import { StyledMap, Loading } from "./StyledMap";
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import RouteForm from "../RouteForm/RouteForm";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaGVpOW12dTFnZDYzbHBjMW55MzB1OHAifQ.2uXb_LUTS_awLF8Y91dVgQ";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDY5MG1rdjAzdGQzZW5zanhqbWU5cmoifQ.jOgkeSYbOWlO7yvv_sA0Dg";
 
 export default function Map() {
   const map = useRef(null);
@@ -20,6 +21,7 @@ export default function Map() {
   const [calculated, setCalculated] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [inputPlaceholder, setInputPlaceholder] = useState("Search for places");
+  const [savedRoute, setSavedRoute] = useState(false);
 
   mapboxgl.accessToken = accessToken;
 
@@ -131,7 +133,76 @@ export default function Map() {
     setCalculated(true);
   }
 
+  function handleSaveClick() {
+    setSavedRoute(true);
+  }
+  function handleCancelClick() {
+    setSavedRoute(false);
+  }
+  function handleSaveRouteClick() {
+    setSavedRoute(false);
+  }
+
   function handleDeleteClick() {
+    if (savedRoute) {
+      setSavedRoute(false);
+    } else {
+      for (let marker of markers) {
+        marker.remove();
+      }
+      if (map.current.getSource("route")) {
+        map.current.removeLayer("route");
+        map.current.removeSource("route");
+      }
+      setMarkers([]);
+      setRouteCoords([]);
+      setNewRouteData({});
+
+      setCalculated(false);
+    }
+  }
+
+  async function postData(dbData) {
+    try {
+      const response = await fetch("/api/routes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dbData),
+      });
+
+      if (!response.ok) {
+        // Failure (Bad Response)
+        console.error("Bad Response");
+      }
+    } catch (error) {
+      // Failure (Network error, etc)
+      console.error("An Error occurred");
+    }
+  }
+
+  function createDbData(userInput, apiData) {
+    const dbData = {
+      name: userInput.name,
+      distance: apiData.routes[0].distance,
+      duration: apiData.routes[0].duration,
+      routeData: apiData.routes[0].geometry,
+      notes: userInput.notes,
+    };
+    postData(dbData);
+  }
+
+  function handleRouteSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    const formData = new FormData(form);
+    const userInput = Object.fromEntries(formData);
+
+    createDbData(userInput, newRouteData);
+    form.reset();
+
     for (let marker of markers) {
       marker.remove();
     }
@@ -142,6 +213,7 @@ export default function Map() {
     setMarkers([]);
     setRouteCoords([]);
     setNewRouteData({});
+    setSavedRoute(false);
     setCalculated(false);
   }
 
@@ -176,6 +248,7 @@ export default function Map() {
           markers={markers}
           isLoading={isLoading}
           calculated={calculated}
+          onSave={handleSaveClick}
           onCreate={handleCreateClick}
           onDelete={handleDeleteClick}
         />
@@ -190,6 +263,12 @@ export default function Map() {
           onSearchSubmit={handleSearchSubmit}
         />
       )}
+
+      <RouteForm
+        savedRoute={savedRoute}
+        onCancelClick={handleCancelClick}
+        onRouteSubmit={handleRouteSubmit}
+      />
     </>
   );
 }
