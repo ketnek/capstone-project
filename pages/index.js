@@ -1,4 +1,4 @@
-import MapHandler from "@/components/MapHandler/MapHandler";
+import MapHandler from "@/components/MapHandler/MapFunctions";
 import Head from "next/head";
 
 export default function Home() {
