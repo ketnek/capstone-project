@@ -2,9 +2,15 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import Control from "../Control/Control";
 import SearchBar from "../SearchBar/SearchBar";
 import { StyledMap, Loading } from "./StyledMap";
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import RouteForm from "../RouteForm/RouteForm";
+import postData from "@/lib/postData";
+import createDbData from "@/lib/createDbData";
+import coordsToString from "@/lib/coordsToString";
+import { useDirectionsApi } from "@/hooks/useDirectionsApi";
+import drawRouteOnMap from "@/lib/drawRouteOnMap";
+import { useGeocodingApi } from "@/hooks/useGeocodingApi";
 
 // Change Token before git push!!!
 const accessToken =
@@ -14,14 +20,18 @@ export default function Map() {
   const map = useRef(null);
   const mapContainer = useRef(null);
   const [markers, setMarkers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [newRouteData, setNewRouteData] = useState();
+
   const [searchValue, setSearchValue] = useState("");
   const [routeCoords, setRouteCoords] = useState([]);
   const [calculated, setCalculated] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
+
   const [inputPlaceholder, setInputPlaceholder] = useState("Search for places");
   const [savedRoute, setSavedRoute] = useState(false);
+  //-------------------
+  const { isLoading, directionsData, setDirectionsData, getDirectionsData } =
+    useDirectionsApi();
+
+  const { searchResults, getGeocodingData } = useGeocodingApi();
 
   mapboxgl.accessToken = accessToken;
 
@@ -45,91 +55,22 @@ export default function Map() {
     });
   }, []);
 
-  // Format the data for the Map Directions query
-  function updateRoute() {
-    // Format the coordinates
-    const newCoords = routeCoords.join(";");
-
-    getMatch(
-      `https://api.mapbox.com/directions/v5/mapbox/cycling/${newCoords}?geometries=geojson&language=de&overview=full&steps=true&access_token=${mapboxgl.accessToken}`
-    );
-  }
-
-  // Make a Map Matching request
-  async function getMatch(url) {
-    setIsLoading(true);
-
-    const response = await fetch(url);
-
-    // Handle errors
-    if (!response) {
-      alert(
-        `${data.code} - ${data.message}.\n\nFor more information: https://docs.mapbox.com/api/navigation/map-matching/#map-matching-api-errors`
-      );
-      return;
-    } else {
-      const data = await response.json();
-      setNewRouteData(data);
-
+  useEffect(() => {
+    if (!isLoading && directionsData !== null) {
       // Get the coordinates from the response
-      const coords = data.routes[0].geometry;
+      const coords = directionsData.routes[0].geometry;
       // Draw the route on the map
-      addRoute(coords);
+      drawRouteOnMap(coords, map);
     }
-
-    setIsLoading(false);
-  }
-
-  // Draw Route on the Map
-  function addRoute(coords) {
-    // If a route is already loaded, remove it
-    if (map.current.getSource("route")) {
-      map.current.removeLayer("route");
-      map.current.removeSource("route");
-    }
-
-    // Add a new layer to the map
-    map.current.addLayer({
-      id: "route",
-      type: "line",
-      source: {
-        type: "geojson",
-        data: {
-          type: "Feature",
-          properties: {},
-          geometry: coords,
-        },
-      },
-      layout: {
-        "line-join": "round",
-        "line-cap": "round",
-      },
-      paint: {
-        "line-color": "#03AA46",
-        "line-width": 8,
-        "line-opacity": 0.8,
-      },
-    });
-  }
-
-  // Make a Geocoding request
-  async function getNewDestination(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        console.error("Loading new destination went wrong!");
-      }
-      const data = await response.json();
-      setSearchResults(data.features);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  }, [isLoading, directionsData]);
 
   // all handler
 
   function handleCreateClick() {
-    updateRoute();
+    const coordsString = coordsToString(routeCoords);
+    getDirectionsData(
+      `https://api.mapbox.com/directions/v5/mapbox/cycling/${coordsString}?geometries=geojson&language=de&overview=full&steps=true&access_token=${mapboxgl.accessToken}`
+    );
     setCalculated(true);
   }
 
@@ -137,9 +78,6 @@ export default function Map() {
     setSavedRoute(true);
   }
   function handleCancelClick() {
-    setSavedRoute(false);
-  }
-  function handleSaveRouteClick() {
     setSavedRoute(false);
   }
 
@@ -156,41 +94,10 @@ export default function Map() {
       }
       setMarkers([]);
       setRouteCoords([]);
-      setNewRouteData({});
+      setDirectionsData(null);
 
       setCalculated(false);
     }
-  }
-
-  async function postData(dbData) {
-    try {
-      const response = await fetch("/api/routes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dbData),
-      });
-
-      if (!response.ok) {
-        // Failure (Bad Response)
-        console.error("Bad Response");
-      }
-    } catch (error) {
-      // Failure (Network error, etc)
-      console.error("An Error occurred");
-    }
-  }
-
-  function createDbData(userInput, apiData) {
-    const dbData = {
-      name: userInput.name,
-      distance: apiData.routes[0].distance,
-      duration: apiData.routes[0].duration,
-      routeData: apiData.routes[0].geometry,
-      notes: userInput.notes,
-    };
-    postData(dbData);
   }
 
   function handleRouteSubmit(event) {
@@ -200,7 +107,8 @@ export default function Map() {
     const formData = new FormData(form);
     const userInput = Object.fromEntries(formData);
 
-    createDbData(userInput, newRouteData);
+    const dbData = createDbData(userInput, directionsData);
+    postData(dbData);
     form.reset();
 
     for (let marker of markers) {
@@ -212,7 +120,7 @@ export default function Map() {
     }
     setMarkers([]);
     setRouteCoords([]);
-    setNewRouteData({});
+    setDirectionsData(null);
     setSavedRoute(false);
     setCalculated(false);
   }
@@ -234,7 +142,7 @@ export default function Map() {
 
   function handleInputChange(event) {
     setSearchValue(event.target.value);
-    getNewDestination(
+    getGeocodingData(
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?country=de&types=place,address,postcode,poi&language=de&access_token=${accessToken}`
     );
   }
