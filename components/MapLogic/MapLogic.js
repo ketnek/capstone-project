@@ -12,7 +12,7 @@ import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-load
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDY5MG1rdjAzdGQzZW5zanhqbWU5cmoifQ.jOgkeSYbOWlO7yvv_sA0Dg";
+  "ppk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaGs0eW9uNDA5bmEzcG11bmFlN29zaW0ifQ.REO7S2Yk_5pYP0cjzp3tlw";
 
 export default function MapLogic() {
   const [map, mapContainer] = useMapboxMap();
