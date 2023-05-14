@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Form = styled.form`
   position: absolute;
@@ -7,8 +7,15 @@ const Form = styled.form`
   transform: translate(-50%);
   z-index: 1;
   background-color: white;
-  display: ${(props) => (props.savedRoute ? "flex" : "none")};
-  flex-direction: column;
+  ${(props) =>
+    props.savedRoute
+      ? css`
+          display: flex;
+          flex-direction: column;
+        `
+      : css`
+          display: none;
+        `}
 `;
 
 const Fieldset = styled.fieldset`
