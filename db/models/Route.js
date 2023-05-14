@@ -7,7 +7,8 @@ const routeSchema = new Schema({
   distance: { type: Number, required: true },
   duration: { type: Number, required: true },
   routeData: { type: Object, required: true },
-  notes: { type: String, required: true },
+  notes: { type: String },
+  image: { type: String },
 });
 
 const Route = mongoose.models.Route || mongoose.model("Route", routeSchema);

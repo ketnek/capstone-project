@@ -9,12 +9,14 @@ import { useMapMarkers } from "@/hooks/useMapMarkers";
 import { useGeocodingApi } from "@/hooks/useGeocodingApi";
 import { useDirectionsApi } from "@/hooks/useDirectionsApi";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import postImage from "@/lib/postImage";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaGs1Mzk0ZDBjcnAzZXMxMXE0eThtNWMifQ.gkAyyeMDrtnojovNSk_seQ";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDY5MG1rdjAzdGQzZW5zanhqbWU5cmoifQ.jOgkeSYbOWlO7yvv_sA0Dg";
 
 export default function MapLogic() {
+  const [image, setImage] = useState(null);
   const [map, mapContainer] = useMapboxMap();
   const [searchValue, setSearchValue] = useState("");
   const [calculated, setCalculated] = useState(false);
@@ -47,6 +49,10 @@ export default function MapLogic() {
     setSavedRoute(false);
   }
 
+  function handleFileChange(event) {
+    setImage(event.target.files[0]);
+  }
+
   function handleDeleteClick() {
     if (savedRoute) {
       setSavedRoute(false);
@@ -65,16 +71,21 @@ export default function MapLogic() {
     }
   }
 
-  function handleRouteSubmit(event) {
+  async function handleRouteSubmit(event) {
     event.preventDefault();
     const form = event.target;
 
     const formData = new FormData(form);
-    const userInput = Object.fromEntries(formData);
+    formData.append("file", image);
+    formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET);
 
-    const dbData = createDbData(userInput, directionsData);
-    postData(dbData);
+    const imageUrl = await postImage(formData);
+    const userInput = Object.fromEntries(formData);
+    const dbData = createDbData(userInput, directionsData, imageUrl);
+
+    await postData(dbData);
     form.reset();
+    setImage(null);
 
     for (let marker of markers) {
       marker.remove();
@@ -121,6 +132,7 @@ export default function MapLogic() {
   }
   return (
     <Map
+      image={image}
       markers={markers}
       isLoading={isLoading}
       calculated={calculated}
@@ -130,6 +142,7 @@ export default function MapLogic() {
       searchResults={searchResults}
       inputPlaceholder={inputPlaceholder}
       onSave={handleSaveClick}
+      onChange={handleFileChange}
       onCreate={handleCreateClick}
       onDelete={handleDeleteClick}
       onInputChange={handleInputChange}

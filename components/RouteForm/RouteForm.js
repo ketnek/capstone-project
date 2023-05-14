@@ -1,6 +1,9 @@
 import { Form, Fieldset } from "./StyledRouteForm";
+import Image from "next/image";
 
 export default function RouteForm({
+  image,
+  onChange,
   savedRoute,
   onRouteSubmit,
   onCancelClick,
@@ -28,6 +31,17 @@ export default function RouteForm({
           name="notes"
           placeholder="Please enter your notes here..."
         ></textarea>
+        {image && (
+          <Image
+            src={URL.createObjectURL(image)}
+            width={150}
+            height={150}
+            alt="Preview of the image to upload"
+            style={{ objectFit: "cover" }}
+          />
+        )}
+        <label htmlFor="Image">Upload your image</label>
+        <input onChange={onChange} type="file" id="image" name="image" />
       </Fieldset>
       <button type="submit">Save</button>
       <button onClick={onCancelClick} type="button">

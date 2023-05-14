@@ -5,10 +5,12 @@ import RouteForm from "../RouteForm/RouteForm";
 import { StyledMap, Loading } from "./StyledMap";
 
 export default function Map({
+  image,
   onSave,
   markers,
   onDelete,
   onCreate,
+  onChange,
   isLoading,
   calculated,
   savedRoute,
@@ -48,6 +50,8 @@ export default function Map({
       )}
 
       <RouteForm
+        image={image}
+        onChange={onChange}
         savedRoute={savedRoute}
         onCancelClick={onCancelClick}
         onRouteSubmit={onRouteSubmit}
