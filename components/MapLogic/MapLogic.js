@@ -13,7 +13,7 @@ import postImage from "@/lib/postImage";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaDY5MG1rdjAzdGQzZW5zanhqbWU5cmoifQ.jOgkeSYbOWlO7yvv_sA0Dg";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaG93ZWdrNjF6djQzY254eTU3cWpha3MifQ.3bkbfyYnT1br6RzzBpPvfg";
 
 export default function MapLogic() {
   const [image, setImage] = useState(null);
