@@ -19,19 +19,19 @@ export default function Layout({ children }) {
       <main>{children}</main>
       <Footer>
         <Nav>
-          <NavLink href="#">
+          <NavLink href="/">
             <MapIcon />
           </NavLink>
 
-          <NavLink href="#">
+          <NavLink href="/routes">
             <RouteIcon />
           </NavLink>
 
-          <NavLink href="#">
+          <NavLink href="/routes/favorites">
             <StarIcon />
           </NavLink>
 
-          <NavLink href="#">
+          <NavLink href="/profile">
             <BikeIcon />
           </NavLink>
         </Nav>
