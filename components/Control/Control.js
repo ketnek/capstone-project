@@ -14,19 +14,19 @@ export default function Control({
       {markers.length > 1 && (
         <ControlButton
           job="create"
-          handler={onCreate}
+          onClick={onCreate}
           isLoading={isLoading}
           calculated={calculated}
         />
       )}
       {calculated && !isLoading && (
-        <ControlButton handler={onSave} job="save" />
+        <ControlButton onClick={onSave} job="save" />
       )}
 
       <ControlButton
         isLoading={isLoading}
         calculated={calculated}
-        handler={onDelete}
+        onClick={onDelete}
         job="delete"
       />
     </Container>
