@@ -15,7 +15,7 @@ export default function RouteForm({
         <legend>Route Informations</legend>
         <p id="description">
           Please provide a name for your route and add some notes if you like
-          too.
+          to.
         </p>
         <label htmlFor="name" required>
           Route Name
