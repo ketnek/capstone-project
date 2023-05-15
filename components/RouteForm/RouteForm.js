@@ -5,6 +5,7 @@ export default function RouteForm({
   image,
   onChange,
   savedRoute,
+  sendRouteForm,
   onRouteSubmit,
   onCancelClick,
 }) {
@@ -43,8 +44,10 @@ export default function RouteForm({
         <label htmlFor="Image">Upload your image</label>
         <input onChange={onChange} type="file" id="image" name="image" />
       </Fieldset>
-      <button type="submit">Save</button>
-      <button onClick={onCancelClick} type="button">
+      <button disabled={sendRouteForm} type="submit">
+        {sendRouteForm ? "..." : "Save"}
+      </button>
+      <button disabled={sendRouteForm} onClick={onCancelClick} type="button">
         Cancel
       </button>
     </Form>

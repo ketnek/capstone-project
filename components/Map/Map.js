@@ -16,6 +16,7 @@ export default function Map({
   savedRoute,
   searchValue,
   mapContainer,
+  sendRouteForm,
   searchResults,
   onInputChange,
   onCancelClick,
@@ -53,6 +54,7 @@ export default function Map({
         image={image}
         onChange={onChange}
         savedRoute={savedRoute}
+        sendRouteForm={sendRouteForm}
         onCancelClick={onCancelClick}
         onRouteSubmit={onRouteSubmit}
       />
