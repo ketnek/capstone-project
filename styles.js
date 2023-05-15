@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+
   *,
   *::before,
   *::after {
@@ -10,6 +11,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
+    color: var(--dark-gray);
   }
 
 `;

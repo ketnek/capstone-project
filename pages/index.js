@@ -1,5 +1,5 @@
+import MapHandler from "@/components/MapLogic/MapLogic";
 import Head from "next/head";
-import Map from "@/components/Map/Map";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Map />
+        <MapHandler />
       </main>
     </>
   );
