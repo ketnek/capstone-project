@@ -22,6 +22,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
+    color: var(--dark-gray);
   }
 
 `;

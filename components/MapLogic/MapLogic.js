@@ -21,6 +21,7 @@ export default function MapLogic() {
   const [searchValue, setSearchValue] = useState("");
   const [calculated, setCalculated] = useState(false);
   const [savedRoute, setSavedRoute] = useState(false);
+  const [sendRouteForm, setSendRouteForm] = useState(false);
   const { searchResults, getGeocodingData } = useGeocodingApi();
   const [inputPlaceholder, setInputPlaceholder] = useState("Search for places");
   const { isLoading, directionsData, setDirectionsData, getDirectionsData } =
@@ -75,6 +76,7 @@ export default function MapLogic() {
     event.preventDefault();
     const form = event.target;
 
+    setSendRouteForm(true);
     const formData = new FormData(form);
     formData.append("file", image);
     formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET);
@@ -99,6 +101,7 @@ export default function MapLogic() {
     setDirectionsData(null);
     setSavedRoute(false);
     setCalculated(false);
+    setSendRouteForm(false);
   }
 
   function handleResultClick(resultCoords, placeholderText) {
@@ -139,6 +142,7 @@ export default function MapLogic() {
       savedRoute={savedRoute}
       searchValue={searchValue}
       mapContainer={mapContainer}
+      sendRouteForm={sendRouteForm}
       searchResults={searchResults}
       inputPlaceholder={inputPlaceholder}
       onSave={handleSaveClick}
