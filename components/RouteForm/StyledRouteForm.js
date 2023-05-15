@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 const Form = styled.form`
   position: absolute;
   width: 85%;
-  top: 4rem;
+  top: 2rem;
   left: 50%;
   transform: translate(-50%);
   z-index: 1;
