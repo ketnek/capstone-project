@@ -1,41 +1,34 @@
-import {
-  BikeIcon,
-  Footer,
-  Header,
-  Headline,
-  MapIcon,
-  Nav,
-  NavLink,
-  RouteIcon,
-  StarIcon,
-} from "./StyledLayout";
+import { useState } from "react";
+import Header from "../Header/Header";
+import Navigation from "../Navigation/Navigation";
 
 export default function Layout({ children }) {
+  const [activePage, setActivePage] = useState("Map");
+
+  function handleMapIconClick() {
+    setActivePage("Map");
+  }
+  function handleRouteIconClick() {
+    setActivePage("Routes");
+  }
+  function handleStarIconClick() {
+    setActivePage("Favorites");
+  }
+  function handleBikeIconClick() {
+    setActivePage("Profile");
+  }
+
   return (
     <>
-      <Header>
-        <Headline>Map</Headline>
-      </Header>
+      <Header activePage={activePage} />
       <main>{children}</main>
-      <Footer>
-        <Nav>
-          <NavLink href="/">
-            <MapIcon />
-          </NavLink>
-
-          <NavLink href="/routes">
-            <RouteIcon />
-          </NavLink>
-
-          <NavLink href="/routes/favorites">
-            <StarIcon />
-          </NavLink>
-
-          <NavLink href="/profile">
-            <BikeIcon />
-          </NavLink>
-        </Nav>
-      </Footer>
+      <Navigation
+        activePage={activePage}
+        onMapIconClick={handleMapIconClick}
+        onRouteIconClick={handleRouteIconClick}
+        onStarIconClick={handleStarIconClick}
+        onBikeIconClick={handleBikeIconClick}
+      />
     </>
   );
 }

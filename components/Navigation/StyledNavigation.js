@@ -3,24 +3,6 @@ import { IoBicycle, IoMapOutline } from "react-icons/io5";
 import { FaRoute, FaRegStar } from "react-icons/fa";
 import Link from "next/link";
 
-const Header = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  height: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--white);
-  background-color: var(--orange);
-`;
-
-const Headline = styled.h1`
-  font-size: 1.5rem;
-  margin: 0;
-`;
 const Footer = styled.footer`
   position: fixed;
   bottom: 0;
@@ -43,7 +25,8 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled(Link)`
-  color: white;
+  color: ${(props) =>
+    props.isactive === "on" ? "var(--dark-gray)" : "var(--white)"};
 `;
 
 const MapIcon = styled(IoMapOutline)`
@@ -63,14 +46,4 @@ const BikeIcon = styled(IoBicycle)`
   width: var(--icon-width);
 `;
 
-export {
-  Header,
-  Headline,
-  Footer,
-  Nav,
-  NavLink,
-  MapIcon,
-  RouteIcon,
-  StarIcon,
-  BikeIcon,
-};
+export { Footer, Nav, NavLink, MapIcon, RouteIcon, StarIcon, BikeIcon };
