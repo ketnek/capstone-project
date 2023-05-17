@@ -1,50 +1,37 @@
 import {
-  Footer,
   Nav,
+  Footer,
   NavLink,
   MapIcon,
-  RouteIcon,
   StarIcon,
   BikeIcon,
+  RouteIcon,
 } from "./StyledNavigation";
 
-export default function Navigation({
-  activePage,
-  onMapIconClick,
-  onRouteIconClick,
-  onStarIconClick,
-  onBikeIconClick,
-}) {
+export default function Navigation({ activePage }) {
   return (
     <Footer>
       <Nav>
-        <NavLink
-          isactive={activePage === "Map" ? "on" : "off"}
-          onClick={onMapIconClick}
-          href="/"
-        >
+        <NavLink isactive={activePage === "/" ? "on" : "off"} href="/">
           <MapIcon />
         </NavLink>
 
         <NavLink
-          isactive={activePage === "Routes" ? "on" : "off"}
-          onClick={onRouteIconClick}
+          isactive={activePage === "/routes" ? "on" : "off"}
           href="/routes"
         >
           <RouteIcon />
         </NavLink>
 
         <NavLink
-          isactive={activePage === "Favorites" ? "on" : "off"}
-          onClick={onStarIconClick}
+          isactive={activePage === "/routes/favorites" ? "on" : "off"}
           href="/routes/favorites"
         >
           <StarIcon />
         </NavLink>
 
         <NavLink
-          isactive={activePage === "Profile" ? "on" : "off"}
-          onClick={onBikeIconClick}
+          isactive={activePage === "/profile" ? "on" : "off"}
           href="/profile"
         >
           <BikeIcon />
