@@ -15,6 +15,7 @@ const Footer = styled.footer`
   align-items: center;
   color: var(--white);
   background-color: var(--orange);
+  border-top: 2px solid black;
 `;
 
 const Nav = styled.nav`
@@ -26,7 +27,7 @@ const Nav = styled.nav`
 
 const NavLink = styled(Link)`
   color: ${(props) =>
-    props.isactive === "on" ? "var(--dark-gray)" : "var(--white)"};
+    props.isactive === "true" ? "var(--dark-gray)" : "var(--white)"};
 `;
 
 const MapIcon = styled(IoMapOutline)`
