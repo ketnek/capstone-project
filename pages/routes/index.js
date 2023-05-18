@@ -16,5 +16,6 @@ export default function Routes() {
   if (isLoading) return <div>loading...</div>;
   if (routes.length === 0)
     return <Placeholder text="Add your first route today!" />;
+
   return <Card routes={routes} refetch={refetch} />;
 }
