@@ -1,9 +1,5 @@
-import styled from "styled-components";
+import Placeholder from "@/components/Placeholder/Placeholder";
 
 export default function Routes() {
-  return <Test>Favorites Page</Test>;
+  return <Placeholder text="Which is your favorite route?" />;
 }
-
-const Test = styled.p`
-  margin-top: 5rem;
-`;

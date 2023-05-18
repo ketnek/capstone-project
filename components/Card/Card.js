@@ -1,5 +1,6 @@
 import formatDuration from "@/lib/formatDuration";
 import formatDistance from "@/lib/formatDistance";
+import putData from "@/lib/putData.js";
 import {
   Info,
   List,
@@ -9,17 +10,27 @@ import {
   StarIcon,
   RouteLink,
   RouteImage,
+  FilledStarIcon,
   HeadlineContainer,
 } from "./StyledCard.js";
 
-export default function Card({ routes }) {
+export default function Card({ routes, refetch }) {
+  async function handleFavoriteClick(routeData) {
+    await putData({ ...routeData, favorite: !routeData.favorite });
+    refetch();
+  }
+
   const routeItems = routes.map((route) => {
     return (
       <Item backgroundImage={routes.image} key={route._id}>
         <RouteLink href="#">
           <HeadlineContainer>
             <Headline>{route.name}</Headline>
-            <StarIcon />
+            {route.favorite ? (
+              <FilledStarIcon onClick={() => handleFavoriteClick(route)} />
+            ) : (
+              <StarIcon onClick={() => handleFavoriteClick(route)} />
+            )}
           </HeadlineContainer>
           <RouteImage
             src={route.image}

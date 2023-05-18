@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import { FaRegStar } from "react-icons/fa";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 const List = styled.ul`
   padding: 0;
@@ -30,6 +30,11 @@ const Headline = styled.h2`
 `;
 
 const StarIcon = styled(FaRegStar)`
+  height: 25px;
+  width: 25px;
+`;
+
+const FilledStarIcon = styled(FaStar)`
   height: 25px;
   width: 25px;
 `;
@@ -71,4 +76,5 @@ export {
   RouteLink,
   RouteImage,
   HeadlineContainer,
+  FilledStarIcon,
 };
