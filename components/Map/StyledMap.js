@@ -3,6 +3,9 @@ import styled from "styled-components";
 const StyledMap = styled.div`
   width: 100%;
   height: 100%;
+  & .mapboxgl-ctrl-bottom-left {
+    top: 0.2rem;
+  }
 `;
 
 const Loading = styled.p`

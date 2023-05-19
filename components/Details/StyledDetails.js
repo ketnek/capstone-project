@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MdArrowBackIosNew } from "react-icons/md";
+import { MdArrowBackIosNew, MdEditNote, MdOutlineClear } from "react-icons/md";
 
 const Headline = styled.h2`
   font-size: 1.1rem;
@@ -22,11 +22,41 @@ const BackIcon = styled(MdArrowBackIosNew)`
   color: var(--white);
 `;
 
+const EditButton = styled.button`
+  position: absolute;
+  top: 0.3rem;
+  right: 1rem;
+  z-index: 3;
+  background-color: var(--orange);
+  border: none;
+`;
+
+const EditIcon = styled(MdEditNote)`
+  height: 35px;
+  width: 35px;
+  color: var(--white);
+`;
+
+const CancelIcon = styled(MdOutlineClear)`
+  height: 35px;
+  width: 35px;
+  color: var(--white);
+`;
+
 const NotesContainer = styled.div`
   width: 85%;
   height: 12rem;
-  background-color: var(--light-gray);
+  overflow: scroll;
   border-radius: 10px;
+  background-color: var(--light-gray);
 `;
 
-export { Headline, BackButton, BackIcon, NotesContainer };
+export {
+  Headline,
+  BackButton,
+  BackIcon,
+  EditButton,
+  EditIcon,
+  CancelIcon,
+  NotesContainer,
+};
