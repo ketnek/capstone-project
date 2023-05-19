@@ -1,5 +1,6 @@
 import Map from "../Map/Map";
 import postData from "@/lib/postData";
+import postImage from "@/lib/postImage";
 import { useState, useEffect } from "react";
 import createDbData from "@/lib/createDbData";
 import drawRouteOnMap from "@/lib/drawRouteOnMap";
@@ -9,13 +10,8 @@ import { useMapMarkers } from "@/hooks/useMapMarkers";
 import { useGeocodingApi } from "@/hooks/useGeocodingApi";
 import { useDirectionsApi } from "@/hooks/useDirectionsApi";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
-import postImage from "@/lib/postImage";
 
-// Change Token before git push!!!
-const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaHE1NjV5dzBkcDMza284dmJqYXYyZGUifQ.fymEqTwh54IuRESJ_rHLMg";
-
-export default function MapLogic() {
+export default function MapLogic({ accessToken }) {
   const [image, setImage] = useState(null);
   const [map, mapContainer] = useMapboxMap();
   const [searchValue, setSearchValue] = useState("");
@@ -36,6 +32,7 @@ export default function MapLogic() {
     if (!isLoading && directionsData !== null) {
       // Get the coordinates from the response
       const coords = directionsData.routes[0].geometry;
+      console.log(coords);
       // Draw the route on the map
       drawRouteOnMap(coords, map);
     }

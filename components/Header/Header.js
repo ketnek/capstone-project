@@ -8,6 +8,7 @@ export default function Header({ activePage }) {
         {activePage === "/routes" && "Routes"}
         {activePage === "/routes/favorites" && "Favorites"}
         {activePage === "/profile" && "Profile"}
+        {activePage === "/routes/[id]" && "Details"}
       </Headline>
     </PageHeader>
   );
