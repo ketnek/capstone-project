@@ -6,9 +6,13 @@ import {
   EditIcon,
   BackButton,
   EditButton,
-  NotesContainer,
   CancelIcon,
+  NotesContainer,
+  HeadlineContainer,
+  Notes,
 } from "./StyledDetails";
+import EditForm from "../EditForm/EditForm";
+import SaveDeleteButton from "../SaveDeleteButton/SaveDeleteButton";
 
 export default function Details({
   edit,
@@ -17,6 +21,8 @@ export default function Details({
   accessToken,
   onBackClick,
   onEditClick,
+  editTextareaRef,
+  onEditFormSubmit,
 }) {
   return (
     <>
@@ -26,15 +32,25 @@ export default function Details({
       <EditButton type="button" onClick={onEditClick}>
         {edit ? <CancelIcon /> : <EditIcon />}
       </EditButton>
-      <Headline>{route.name}</Headline>
+      <HeadlineContainer>
+        <Headline>{route.name}</Headline>
+        {edit && <SaveDeleteButton name="Delete" />}
+      </HeadlineContainer>
       <RoutePreview routeCoords={routeCoords} accessToken={accessToken} />
       <DetailsDisplay duration={route.duration} distance={route.distance} />
-      <Headline>Notes:</Headline>
+      <HeadlineContainer>
+        <Headline>Notes:</Headline>
+        {edit && <SaveDeleteButton formId="editForm" name="Save" />}
+      </HeadlineContainer>
       {edit ? (
-        <div>Editing</div>
+        <EditForm
+          route={route}
+          onEditFormSubmit={onEditFormSubmit}
+          editTextareaRef={editTextareaRef}
+        />
       ) : (
         <NotesContainer>
-          <p>- {route.notes}</p>
+          <Notes>{route.notes}</Notes>
         </NotesContainer>
       )}
     </>

@@ -1,10 +1,16 @@
 import styled from "styled-components";
 import { MdArrowBackIosNew, MdEditNote, MdOutlineClear } from "react-icons/md";
 
+const HeadlineContainer = styled.div`
+  width: 85%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const Headline = styled.h2`
   font-size: 1.1rem;
-  align-self: flex-start;
-  margin: 1.5rem 0 1rem 2rem;
 `;
 
 const BackButton = styled.button`
@@ -51,12 +57,20 @@ const NotesContainer = styled.div`
   background-color: var(--light-gray);
 `;
 
+const Notes = styled.p`
+  margin: 0;
+  padding: 1rem;
+  font-size: 0.9rem;
+`;
+
 export {
   Headline,
   BackButton,
   BackIcon,
   EditButton,
   EditIcon,
+  Notes,
   CancelIcon,
   NotesContainer,
+  HeadlineContainer,
 };
