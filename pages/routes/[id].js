@@ -1,27 +1,24 @@
 import { useState, useRef } from "react";
-import putData from "@/lib/putData";
+import useSWR from "swr";
 import { useRouter } from "next/router";
 import Details from "@/components/Details/Details";
 import { useEffect } from "react";
+import patchData from "@/lib/patchData";
+import deleteData from "@/lib/deleteData";
 
-export default function Routes({
-  error,
-  routes,
-  refetch,
-  isLoading,
-  accessToken,
-}) {
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export default function Routes({ refetchRoutes, accessToken }) {
   const router = useRouter();
   const { id } = router.query;
   const editTextareaRef = useRef(null);
   const [edit, setEdit] = useState(false);
-
-  function handleBackClick() {
-    router.back();
-  }
-  function handleEditClick() {
-    setEdit(!edit);
-  }
+  const {
+    data: route,
+    error,
+    isLoading,
+    mutate: refetchRoute,
+  } = useSWR(`/api/routes/${id}`, fetcher);
 
   // Set focus to the end of the edit textarea
   useEffect(() => {
@@ -34,19 +31,32 @@ export default function Routes({
     }
   }, [edit]);
 
+  function handleBackClick() {
+    router.back();
+  }
+  function handleEditClick() {
+    setEdit(!edit);
+  }
+
+  async function handleDeleteClick() {
+    await deleteData(id);
+    refetchRoutes();
+    setEdit(false);
+    router.back();
+  }
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-
-  const route = routes.filter((route) => route._id === id)[0];
-  const routeCoords = route.routeData;
 
   async function handleEditFormSubmit(event) {
     event.preventDefault();
     const updatedNotes = event.target.elements.notes.value;
-    await putData({ ...route, notes: updatedNotes });
-    refetch();
+    await patchData({ ...route, notes: updatedNotes }, id);
+    refetchRoute();
     setEdit(false);
   }
+
+  const routeCoords = route.routeData;
 
   return (
     <Details
@@ -56,6 +66,7 @@ export default function Routes({
       accessToken={accessToken}
       onBackClick={handleBackClick}
       onEditClick={handleEditClick}
+      onDeleteClick={handleDeleteClick}
       editTextareaRef={editTextareaRef}
       onEditFormSubmit={handleEditFormSubmit}
     />

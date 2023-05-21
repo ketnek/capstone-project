@@ -1,4 +1,4 @@
-import putData from "@/lib/putData.js";
+import patchData from "@/lib/patchData.js";
 import StarIcon from "../StarIcon/StarIcon.js";
 
 import {
@@ -11,10 +11,10 @@ import {
 } from "./StyledCard.js";
 import DetailsDisplay from "../DetailsDisplay/DetailsDisplay.js";
 
-export default function Card({ routes, refetch }) {
-  async function handleFavoriteClick(routeData) {
-    await putData({ ...routeData, favorite: !routeData.favorite });
-    refetch();
+export default function Card({ routes, refetchRoutes }) {
+  async function handleFavoriteClick(routeData, id) {
+    await patchData({ ...routeData, favorite: !routeData.favorite }, id);
+    refetchRoutes();
   }
 
   const routeItems = routes.map((route) => {
@@ -22,12 +22,17 @@ export default function Card({ routes, refetch }) {
       <Item backgroundImage={routes.image} key={route._id}>
         {route.favorite ? (
           <StarIcon
+            id={route._id}
             route={route}
             isFilled
             onFavoriteClick={handleFavoriteClick}
           />
         ) : (
-          <StarIcon route={route} onFavoriteClick={handleFavoriteClick} />
+          <StarIcon
+            id={route._id}
+            route={route}
+            onFavoriteClick={handleFavoriteClick}
+          />
         )}
         <RouteLink href={`/routes/${route._id}`}>
           <HeadlineContainer>

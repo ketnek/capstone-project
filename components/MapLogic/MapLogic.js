@@ -11,7 +11,7 @@ import { useGeocodingApi } from "@/hooks/useGeocodingApi";
 import { useDirectionsApi } from "@/hooks/useDirectionsApi";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-export default function MapLogic({ accessToken }) {
+export default function MapLogic({ accessToken, refetchRoutes }) {
   const [image, setImage] = useState(null);
   const [map, mapContainer] = useMapboxMap();
   const [searchValue, setSearchValue] = useState("");
@@ -99,6 +99,7 @@ export default function MapLogic({ accessToken }) {
     setSavedRoute(false);
     setCalculated(false);
     setSendRouteForm(false);
+    refetchRoutes();
   }
 
   function handleResultClick(resultCoords, placeholderText) {

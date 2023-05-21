@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 const List = styled.ul`
   width: 100%;
-  padding: 0;
-  margin: 1.4rem 0 1.4rem 0;
+  height: 100%;
+  margin: 0;
+  padding: 1.4rem 0 1.4rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.3rem;
+  overflow-y: scroll;
 `;
 
 const Item = styled.li`

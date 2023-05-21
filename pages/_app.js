@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
     data: routes,
     error,
     isLoading,
-    mutate: refetch,
+    mutate: refetchRoutes,
   } = useSWR("/api/routes", fetcher);
 
   return (
@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
           {...pageProps}
           error={error}
           routes={routes}
-          refetch={refetch}
+          refetchRoutes={refetchRoutes}
           isLoading={isLoading}
           accessToken={accessToken}
         />

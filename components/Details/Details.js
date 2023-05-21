@@ -21,6 +21,7 @@ export default function Details({
   accessToken,
   onBackClick,
   onEditClick,
+  onDeleteClick,
   editTextareaRef,
   onEditFormSubmit,
 }) {
@@ -34,7 +35,9 @@ export default function Details({
       </EditButton>
       <HeadlineContainer>
         <Headline>{route.name}</Headline>
-        {edit && <SaveDeleteButton name="Delete" />}
+        {edit && (
+          <SaveDeleteButton onClickHandler={onDeleteClick} name="Delete" />
+        )}
       </HeadlineContainer>
       <RoutePreview routeCoords={routeCoords} accessToken={accessToken} />
       <DetailsDisplay duration={route.duration} distance={route.distance} />
