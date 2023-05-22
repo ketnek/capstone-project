@@ -12,7 +12,7 @@ export default function Routes({ routes, error, isLoading, accessToken }) {
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
-  const route = routes.filter((route) => route._id === id)[0];
+  const route = routes.find((route) => route._id === id);
   const routeCoords = route.routeData;
 
   return (

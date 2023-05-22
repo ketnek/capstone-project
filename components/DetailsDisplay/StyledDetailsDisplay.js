@@ -10,7 +10,7 @@ const Info = styled.p`
   margin: 0.8rem 0;
   padding: 0 0.5rem;
   border-radius: 10px;
-  box-shadow: 0px 0px 3px 1px;
+  box-shadow: 0 0 3px 1px;
 `;
 
 export { Details, Info };

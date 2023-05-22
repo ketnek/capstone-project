@@ -32,7 +32,7 @@ export default function MapLogic({ accessToken }) {
     if (!isLoading && directionsData !== null) {
       // Get the coordinates from the response
       const coords = directionsData.routes[0].geometry;
-      console.log(coords);
+
       // Draw the route on the map
       drawRouteOnMap(coords, map);
     }
