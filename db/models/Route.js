@@ -9,6 +9,7 @@ const routeSchema = new Schema({
   routeData: { type: Object, required: true },
   notes: { type: String },
   image: { type: String },
+  favorite: { type: Boolean, required: true },
 });
 
 const Route = mongoose.models.Route || mongoose.model("Route", routeSchema);
