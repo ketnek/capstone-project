@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import { SWRConfig } from "swr";
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout/Layout";
 
@@ -9,26 +9,14 @@ const accessToken =
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
-  const {
-    data: routes,
-    error,
-    isLoading,
-    mutate: refetchRoutes,
-  } = useSWR("/api/routes", fetcher);
-
   return (
     <>
       <GlobalStyle />
-      <Layout>
-        <Component
-          {...pageProps}
-          error={error}
-          routes={routes}
-          refetchRoutes={refetchRoutes}
-          isLoading={isLoading}
-          accessToken={accessToken}
-        />
-      </Layout>
+      <SWRConfig value={{ fetcher: fetcher }}>
+        <Layout>
+          <Component {...pageProps} accessToken={accessToken} />
+        </Layout>
+      </SWRConfig>
     </>
   );
 }

@@ -1,3 +1,4 @@
+import useSWR from "swr";
 import patchData from "@/lib/patchData.js";
 import StarIcon from "../StarIcon/StarIcon.js";
 
@@ -11,7 +12,9 @@ import {
 } from "./StyledCard.js";
 import DetailsDisplay from "../DetailsDisplay/DetailsDisplay.js";
 
-export default function Card({ routes, refetchRoutes }) {
+export default function Card({ routes }) {
+  const { mutate: refetchRoutes } = useSWR("/api/routes");
+
   async function handleFavoriteClick(routeData, id) {
     await patchData({ ...routeData, favorite: !routeData.favorite }, id);
     refetchRoutes();

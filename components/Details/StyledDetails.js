@@ -23,8 +23,8 @@ const BackButton = styled.button`
 `;
 
 const BackIcon = styled(MdArrowBackIosNew)`
-  height: 25px;
-  width: 25px;
+  height: 1.5rem;
+  width: 1.5rem;
   color: var(--white);
 `;
 
@@ -38,21 +38,21 @@ const EditButton = styled.button`
 `;
 
 const EditIcon = styled(MdEditNote)`
-  height: 35px;
-  width: 35px;
+  height: 2.2rem;
+  width: 2.2rem;
   color: var(--white);
 `;
 
 const CancelIcon = styled(MdOutlineClear)`
-  height: 35px;
-  width: 35px;
+  height: 2.2rem;
+  width: 2.2rem;
   color: var(--white);
 `;
 
 const NotesContainer = styled.div`
   width: 85%;
   height: 12rem;
-  overflow: scroll;
+  overflow-y: scroll;
   border-radius: 10px;
   background-color: var(--light-gray);
 `;
@@ -64,12 +64,12 @@ const Notes = styled.p`
 `;
 
 export {
+  Notes,
+  BackIcon,
+  EditIcon,
   Headline,
   BackButton,
-  BackIcon,
   EditButton,
-  EditIcon,
-  Notes,
   CancelIcon,
   NotesContainer,
   HeadlineContainer,

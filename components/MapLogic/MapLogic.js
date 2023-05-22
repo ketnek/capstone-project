@@ -1,3 +1,4 @@
+import useSWR from "swr";
 import Map from "../Map/Map";
 import postData from "@/lib/postData";
 import postImage from "@/lib/postImage";
@@ -11,12 +12,13 @@ import { useGeocodingApi } from "@/hooks/useGeocodingApi";
 import { useDirectionsApi } from "@/hooks/useDirectionsApi";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
-export default function MapLogic({ accessToken, refetchRoutes }) {
+export default function MapLogic({ accessToken }) {
   const [image, setImage] = useState(null);
   const [map, mapContainer] = useMapboxMap();
   const [searchValue, setSearchValue] = useState("");
   const [calculated, setCalculated] = useState(false);
   const [savedRoute, setSavedRoute] = useState(false);
+  const { mutate: refetchRoutes } = useSWR("/api/routes");
   const [sendRouteForm, setSendRouteForm] = useState(false);
   const { searchResults, getGeocodingData } = useGeocodingApi();
   const [inputPlaceholder, setInputPlaceholder] = useState("Search for places");

@@ -1,24 +1,24 @@
-import { useState, useRef } from "react";
 import useSWR from "swr";
-import { useRouter } from "next/router";
-import Details from "@/components/Details/Details";
 import { useEffect } from "react";
 import patchData from "@/lib/patchData";
+import { useRouter } from "next/router";
+import { useState, useRef } from "react";
 import deleteData from "@/lib/deleteData";
+import Details from "@/components/Details/Details";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-export default function Routes({ refetchRoutes, accessToken }) {
+export default function Routes({ accessToken }) {
   const router = useRouter();
   const { id } = router.query;
-  const editTextareaRef = useRef(null);
-  const [edit, setEdit] = useState(false);
   const {
     data: route,
     error,
     isLoading,
     mutate: refetchRoute,
-  } = useSWR(`/api/routes/${id}`, fetcher);
+  } = useSWR(`/api/routes/${id}`);
+  const [edit, setEdit] = useState(false);
+  const { mutate: refetchRoutes } = useSWR("/api/routes");
+
+  const editTextareaRef = useRef(null);
 
   // Set focus to the end of the edit textarea
   useEffect(() => {

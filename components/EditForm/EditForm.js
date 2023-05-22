@@ -9,12 +9,16 @@ export default function EditForm({ route, onEditFormSubmit, editTextareaRef }) {
   }
 
   return (
-    <Form onSubmit={onEditFormSubmit} id="editForm">
+    <Form
+      id="editForm"
+      onSubmit={onEditFormSubmit}
+      aria-label="Edit notes form"
+    >
       <Textarea
         name="notes"
         value={textareaInput}
         ref={editTextareaRef}
-        aria-label="Edit your notes"
+        aria-label="Edit your notes here"
         onChange={handleChangeTextarea}
       />
     </Form>

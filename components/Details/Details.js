@@ -1,6 +1,5 @@
-import RoutePreview from "@/components/RoutePreview/RoutePreview";
-import DetailsDisplay from "@/components/DetailsDisplay/DetailsDisplay";
 import {
+  Notes,
   Headline,
   BackIcon,
   EditIcon,
@@ -9,10 +8,11 @@ import {
   CancelIcon,
   NotesContainer,
   HeadlineContainer,
-  Notes,
 } from "./StyledDetails";
 import EditForm from "../EditForm/EditForm";
+import RoutePreview from "@/components/RoutePreview/RoutePreview";
 import SaveDeleteButton from "../SaveDeleteButton/SaveDeleteButton";
+import DetailsDisplay from "@/components/DetailsDisplay/DetailsDisplay";
 
 export default function Details({
   edit,

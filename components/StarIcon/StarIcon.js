@@ -1,5 +1,5 @@
-import { FaRegStar, FaStar } from "react-icons/fa";
 import Button from "./StyledStarIcon";
+import { FaRegStar, FaStar } from "react-icons/fa";
 
 export default function StarIcon({ id, isFilled, route, onFavoriteClick }) {
   return (
