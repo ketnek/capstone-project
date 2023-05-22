@@ -4,7 +4,7 @@ import Layout from "@/components/Layout/Layout";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaHE1NjV5dzBkcDMza284dmJqYXYyZGUifQ.fymEqTwh54IuRESJ_rHLMg";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaHl4NWVpbjE3OWYzcm1kZ2oxdDFzd3YifQ.-OHGuh-TWSOUyRiw4ufd1g";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
