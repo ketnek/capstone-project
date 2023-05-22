@@ -12,26 +12,26 @@ export default function Navigation({ activePage }) {
   return (
     <Footer>
       <Nav>
-        <NavLink isactive={activePage === "/" ? "on" : "off"} href="/">
+        <NavLink isactive={activePage === "/" ? "true" : "false"} href="/">
           <MapIcon />
         </NavLink>
 
         <NavLink
-          isactive={activePage === "/routes" ? "on" : "off"}
+          isactive={activePage === "/routes" ? "true" : "false"}
           href="/routes"
         >
           <RouteIcon />
         </NavLink>
 
         <NavLink
-          isactive={activePage === "/routes/favorites" ? "on" : "off"}
+          isactive={activePage === "/routes/favorites" ? "true" : "false"}
           href="/routes/favorites"
         >
           <StarIcon />
         </NavLink>
 
         <NavLink
-          isactive={activePage === "/profile" ? "on" : "off"}
+          isactive={activePage === "/profile" ? "true" : "false"}
           href="/profile"
         >
           <BikeIcon />

@@ -12,6 +12,7 @@ const PageHeader = styled.header`
   align-items: center;
   color: var(--white);
   background-color: var(--orange);
+  border-bottom: 2px solid black;
 `;
 
 const Headline = styled.h1`

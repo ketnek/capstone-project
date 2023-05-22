@@ -1,9 +1,13 @@
-import styled from "styled-components";
+import useSWR from "swr";
+import Card from "@/components/Card/Card";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Routes() {
-  return <Test>Routes Page</Test>;
-}
+  const { data: routes, error, isLoading } = useSWR("/api/routes", fetcher);
 
-const Test = styled.p`
-  margin-top: 5rem;
-`;
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
+
+  return <Card routes={routes} />;
+}
