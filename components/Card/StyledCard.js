@@ -18,7 +18,7 @@ const Item = styled.li`
   list-style: none;
   width: 90%;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px 1px;
+  box-shadow: 0 0 5px 1px;
   position: relative;
 `;
 

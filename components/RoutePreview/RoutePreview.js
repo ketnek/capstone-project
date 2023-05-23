@@ -22,9 +22,5 @@ export default function RoutePreview({ routeCoords, accessToken }) {
     setTimeout(() => drawRouteOnMap(routeCoords, map), 300);
   }, []);
 
-  return (
-    <>
-      <Container ref={mapContainer} />
-    </>
-  );
+  return <Container ref={mapContainer} className="map-container" />;
 }
