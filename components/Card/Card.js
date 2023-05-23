@@ -1,17 +1,15 @@
 import putData from "@/lib/putData.js";
 import StarIcon from "../StarIcon/StarIcon.js";
-import formatDuration from "@/lib/formatDuration";
-import formatDistance from "@/lib/formatDistance";
+
 import {
-  Info,
   List,
   Item,
-  Details,
   Headline,
   RouteLink,
   RouteImage,
   HeadlineContainer,
 } from "./StyledCard.js";
+import DetailsDisplay from "../DetailsDisplay/DetailsDisplay.js";
 
 export default function Card({ routes, refetch }) {
   async function handleFavoriteClick(routeData) {
@@ -31,7 +29,7 @@ export default function Card({ routes, refetch }) {
         ) : (
           <StarIcon route={route} onFavoriteClick={handleFavoriteClick} />
         )}
-        <RouteLink href="#">
+        <RouteLink href={`/routes/${route._id}`}>
           <HeadlineContainer>
             <Headline>{route.name}</Headline>
           </HeadlineContainer>
@@ -42,10 +40,7 @@ export default function Card({ routes, refetch }) {
             priority={true}
             alt={route.name}
           />
-          <Details>
-            <Info>{`${formatDistance(route.distance)} km`}</Info>
-            <Info>{formatDuration(route.duration)}</Info>
-          </Details>
+          <DetailsDisplay distance={route.distance} duration={route.duration} />
         </RouteLink>
       </Item>
     );
