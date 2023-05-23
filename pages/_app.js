@@ -3,7 +3,7 @@ import { useState } from "react";
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout/Layout";
 
-// Change Token before git push!!
+// Change Token before git push!!!
 const accessToken =
   "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaTBmdTgwbDAxdHkzaWxwaHl4eGk3ajcifQ.me7E_Zmj0ZUnjcea9eWT7Q";
 
@@ -29,7 +29,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-
-//mapbox://styles/mapbox/outdoors-v12
-//mapbox://styles/mapbox/dark-v11
-//mapbox://styles/mapbox/satellite-streets-v12
