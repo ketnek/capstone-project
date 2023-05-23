@@ -1,5 +1,16 @@
-import { Form, Fieldset } from "./StyledRouteForm";
-import Image from "next/image";
+import {
+  Form,
+  Label,
+  Legend,
+  Fieldset,
+  FileInput,
+  RouteInput,
+  FormButton,
+  FilePreview,
+  Description,
+  NotesTextarea,
+  ButtonContainer,
+} from "./StyledRouteForm";
 
 export default function RouteForm({
   image,
@@ -16,40 +27,45 @@ export default function RouteForm({
       aria-label="Route information Form"
     >
       <Fieldset aria-labelledby="description">
-        <legend>Route Informations</legend>
-        <p id="description">
+        <Legend>Route Informations</Legend>
+        <Description id="description">
           Please provide a name for your route and add some notes if you like
           to.
-        </p>
-        <label htmlFor="name" required>
+        </Description>
+        <Label htmlFor="name" required>
           Route Name
-        </label>
-        <input required type="text" id="name" name="name" />
-        <label htmlFor="notes">Notes</label>
-        <textarea
+        </Label>
+        <RouteInput required type="text" id="name" name="name" />
+        <Label htmlFor="notes">Notes</Label>
+        <NotesTextarea
           required
           id="notes"
           name="notes"
           placeholder="Please enter your notes here..."
-        ></textarea>
+        ></NotesTextarea>
         {image && (
-          <Image
+          <FilePreview
             src={URL.createObjectURL(image)}
-            width={150}
-            height={150}
+            width={200}
+            height={100}
             alt="Preview of the image to upload"
-            style={{ objectFit: "cover" }}
           />
         )}
-        <label htmlFor="Image">Upload your image</label>
-        <input onChange={onChange} type="file" id="image" name="image" />
+        <Label htmlFor="Image">Upload your image</Label>
+        <FileInput onChange={onChange} type="file" id="image" name="image" />
       </Fieldset>
-      <button disabled={sendRouteForm} type="submit">
-        {sendRouteForm ? "..." : "Save"}
-      </button>
-      <button disabled={sendRouteForm} onClick={onCancelClick} type="button">
-        Cancel
-      </button>
+      <ButtonContainer>
+        <FormButton
+          disabled={sendRouteForm}
+          onClick={onCancelClick}
+          type="button"
+        >
+          Cancel
+        </FormButton>
+        <FormButton disabled={sendRouteForm} type="submit">
+          {sendRouteForm ? "..." : "Save"}
+        </FormButton>
+      </ButtonContainer>
     </Form>
   );
 }

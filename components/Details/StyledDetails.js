@@ -1,10 +1,16 @@
 import styled from "styled-components";
-import { MdArrowBackIosNew } from "react-icons/md";
+import { MdArrowBackIosNew, MdEditNote, MdOutlineClear } from "react-icons/md";
+
+const HeadlineContainer = styled.div`
+  width: 85%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Headline = styled.h2`
   font-size: 1.1rem;
-  align-self: flex-start;
-  margin: 1.5rem 0 1rem 2rem;
 `;
 
 const BackButton = styled.button`
@@ -17,16 +23,54 @@ const BackButton = styled.button`
 `;
 
 const BackIcon = styled(MdArrowBackIosNew)`
-  height: 25px;
-  width: 25px;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: var(--white);
+`;
+
+const EditButton = styled.button`
+  position: absolute;
+  top: 0.3rem;
+  right: 1rem;
+  z-index: 3;
+  background-color: var(--orange);
+  border: none;
+`;
+
+const EditIcon = styled(MdEditNote)`
+  height: 2.2rem;
+  width: 2.2rem;
+  color: var(--white);
+`;
+
+const CancelIcon = styled(MdOutlineClear)`
+  height: 2.2rem;
+  width: 2.2rem;
   color: var(--white);
 `;
 
 const NotesContainer = styled.div`
   width: 85%;
   height: 12rem;
-  background-color: var(--light-gray);
+  overflow-y: scroll;
   border-radius: 10px;
+  background-color: var(--light-gray);
 `;
 
-export { Headline, BackButton, BackIcon, NotesContainer };
+const Notes = styled.p`
+  margin: 0;
+  padding: 1rem;
+  font-size: 0.9rem;
+`;
+
+export {
+  Notes,
+  BackIcon,
+  EditIcon,
+  Headline,
+  BackButton,
+  EditButton,
+  CancelIcon,
+  NotesContainer,
+  HeadlineContainer,
+};

@@ -1,3 +1,4 @@
+import useSWR from "swr";
 import Map from "../Map/Map";
 import postData from "@/lib/postData";
 import postImage from "@/lib/postImage";
@@ -17,6 +18,7 @@ export default function MapLogic({ accessToken }) {
   const [searchValue, setSearchValue] = useState("");
   const [calculated, setCalculated] = useState(false);
   const [savedRoute, setSavedRoute] = useState(false);
+  const { mutate: refetchRoutes } = useSWR("/api/routes");
   const [sendRouteForm, setSendRouteForm] = useState(false);
   const { searchResults, getGeocodingData } = useGeocodingApi();
   const [inputPlaceholder, setInputPlaceholder] = useState("Search for places");
@@ -99,6 +101,7 @@ export default function MapLogic({ accessToken }) {
     setSavedRoute(false);
     setCalculated(false);
     setSendRouteForm(false);
+    refetchRoutes();
   }
 
   function handleResultClick(resultCoords, placeholderText) {

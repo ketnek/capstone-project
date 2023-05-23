@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { IoBicycle, IoMapOutline } from "react-icons/io5";
-import { FaRoute, FaRegStar } from "react-icons/fa";
 import Link from "next/link";
+import styled from "styled-components";
+import { FaRoute, FaRegStar } from "react-icons/fa";
+import { IoBicycle, IoMapOutline } from "react-icons/io5";
 
 const Footer = styled.footer`
   position: fixed;

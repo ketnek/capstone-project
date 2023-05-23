@@ -6,5 +6,4 @@ export default styled.main`
   align-items: center;
   margin-top: 3rem;
   height: calc(100vh - 7rem);
-  overflow: scroll;
 `;

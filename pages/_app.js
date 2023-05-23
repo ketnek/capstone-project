@@ -1,34 +1,22 @@
-import useSWR from "swr";
+import { SWRConfig } from "swr";
 import GlobalStyle from "../styles";
 import Layout from "@/components/Layout/Layout";
 
 // Change Token before git push!!!
 const accessToken =
-  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaHl4NWVpbjE3OWYzcm1kZ2oxdDFzd3YifQ.-OHGuh-TWSOUyRiw4ufd1g";
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaHp2MGpkdDFobHIzbG13NTNsZWEwbGUifQ.d25xaSB_w9TQujEs1CD6mw";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function App({ Component, pageProps }) {
-  const {
-    data: routes,
-    error,
-    isLoading,
-    mutate: refetch,
-  } = useSWR("/api/routes", fetcher);
-
   return (
     <>
       <GlobalStyle />
-      <Layout>
-        <Component
-          {...pageProps}
-          error={error}
-          routes={routes}
-          refetch={refetch}
-          isLoading={isLoading}
-          accessToken={accessToken}
-        />
-      </Layout>
+      <SWRConfig value={{ fetcher: fetcher }}>
+        <Layout>
+          <Component {...pageProps} accessToken={accessToken} />
+        </Layout>
+      </SWRConfig>
     </>
   );
 }

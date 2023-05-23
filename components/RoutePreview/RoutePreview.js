@@ -15,6 +15,7 @@ export default function RoutePreview({ routeCoords, accessToken }) {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
       center: [10.000654, 53.550341],
+      attributionControl: false,
       zoom: 9,
     });
 

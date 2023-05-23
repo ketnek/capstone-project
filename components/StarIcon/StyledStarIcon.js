@@ -8,7 +8,7 @@ export default styled.button`
   right: 1.2rem;
 
   & svg {
-    height: 25px;
-    width: 25px;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 `;
