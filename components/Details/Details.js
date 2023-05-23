@@ -17,6 +17,7 @@ import DetailsDisplay from "@/components/DetailsDisplay/DetailsDisplay";
 export default function Details({
   edit,
   route,
+  mapStyle,
   routeCoords,
   accessToken,
   onBackClick,
@@ -39,7 +40,11 @@ export default function Details({
           <SaveDeleteButton onClickHandler={onDeleteClick} name="Delete" />
         )}
       </HeadlineContainer>
-      <RoutePreview routeCoords={routeCoords} accessToken={accessToken} />
+      <RoutePreview
+        mapStyle={mapStyle}
+        routeCoords={routeCoords}
+        accessToken={accessToken}
+      />
       <DetailsDisplay duration={route.duration} distance={route.distance} />
       <HeadlineContainer>
         <Headline>Notes:</Headline>
