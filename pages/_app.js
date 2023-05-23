@@ -3,7 +3,8 @@ import GlobalStyle from "../styles";
 import Layout from "@/components/Layout/Layout";
 
 // Change Token before git push!!!
-const accessToken = "";
+const accessToken =
+  "pk.eyJ1Ijoia2V0bmVrIiwiYSI6ImNsaHp2MGpkdDFobHIzbG13NTNsZWEwbGUifQ.d25xaSB_w9TQujEs1CD6mw";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
