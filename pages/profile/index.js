@@ -47,7 +47,6 @@ export default function Profile() {
 
     const imageUrl = await postImage(formData);
     const userInput = Object.fromEntries(formData);
-    console.log(userInput);
     const dbData = createProfileDbData(userInput, imageUrl);
 
     await patchData(dbData, "/api/users/", profile._id);

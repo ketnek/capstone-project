@@ -6,7 +6,7 @@ const PageHeader = styled.header`
   left: 0;
   right: 0;
   z-index: 2;
-  height: 2.2rem;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
