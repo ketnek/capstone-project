@@ -3,14 +3,19 @@ import styled from "styled-components";
 
 const Form = styled.form`
   width: 90%;
-  padding: 1rem;
-  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin-top: 1.2rem;
   border-radius: 10px;
   box-shadow: 0 0 5px 1px var(--dark-gray);
 `;
 
 const Fieldset = styled.fieldset`
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 0.5rem;
   border: none;
@@ -28,4 +33,14 @@ const FilePreview = styled(Image)`
   align-self: center;
 `;
 
-export { Form, Fieldset, Legend, FilePreview };
+const SubmitButton = styled.button`
+  border: none;
+  font-weight: bold;
+  height: 1.3rem;
+  width: 4rem;
+  color: var(--white);
+  border-radius: 10px;
+  background-color: var(--orange);
+`;
+
+export { Form, Fieldset, Legend, FilePreview, SubmitButton };

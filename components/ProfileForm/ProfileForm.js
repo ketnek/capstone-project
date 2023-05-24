@@ -1,13 +1,19 @@
-import { Fieldset, FilePreview, Form, Legend } from "./StyledProfileForm";
 import { useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import FileInput from "../FileInput/FileInput";
+import {
+  Fieldset,
+  FilePreview,
+  Form,
+  Legend,
+  SubmitButton,
+} from "./StyledProfileForm";
 
 export default function ProfileForm({
   image,
   profile,
-  onChangeFile,
   sendingForm,
+  onChangeFile,
   onProfileFormSubmit,
 }) {
   const [inputValue, setInputValue] = useState(profile);
@@ -70,9 +76,9 @@ export default function ProfileForm({
           onChangeInput={handleChangeInput}
         />
       </Fieldset>
-      <button disabled={sendingForm} type="submit">
+      <SubmitButton disabled={sendingForm} type="submit">
         {sendingForm ? "..." : "Save"}
-      </button>
+      </SubmitButton>
     </Form>
   );
 }

@@ -55,9 +55,9 @@ export default function RouteForm({
       </Fieldset>
       <ButtonContainer>
         <FormButton
-          disabled={sendRouteForm}
-          onClick={onCancelClick}
           type="button"
+          onClick={onCancelClick}
+          disabled={sendRouteForm}
         >
           Cancel
         </FormButton>

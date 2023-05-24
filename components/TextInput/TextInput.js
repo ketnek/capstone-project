@@ -1,7 +1,9 @@
+import { Label } from "./StyeldTextInput";
+
 export default function TextInput({ id, name, value, onChangeInput }) {
   return (
     <>
-      <label htmlFor={id}>{name}</label>
+      <Label htmlFor={id}>{name}</Label>
       <input
         id={id}
         name={id}

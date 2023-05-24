@@ -10,12 +10,12 @@ import {
 
 export default function User({ profile }) {
   const {
-    profileImg,
-    userName,
-    bikeName,
-    bikeType,
     bought,
     mileage,
+    bikeName,
+    userName,
+    bikeType,
+    profileImg,
     lastService,
   } = profile;
 

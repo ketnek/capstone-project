@@ -13,7 +13,11 @@ import DetailsDisplay from "../DetailsDisplay/DetailsDisplay.js";
 
 export default function Card({ routes, refetchRoutes }) {
   async function handleFavoriteClick(routeData, id) {
-    await patchData({ ...routeData, favorite: !routeData.favorite }, id);
+    await patchData(
+      { ...routeData, favorite: !routeData.favorite },
+      "/api/routes/",
+      id
+    );
     refetchRoutes();
   }
 

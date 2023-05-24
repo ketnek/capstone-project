@@ -1,13 +1,13 @@
 import useSWR from "swr";
 import { useState } from "react";
-import createProfileDbData from "@/lib/createProfileDbData";
-import User from "@/components/User/User";
 import postImage from "@/lib/postImage";
-import patchProfileData from "@/lib/patchProfileData";
+import patchData from "@/lib/patchData";
+import User from "@/components/User/User";
+import createProfileDbData from "@/lib/createProfileDbData";
 import {
-  EditButton,
-  CancelIcon,
   EditIcon,
+  CancelIcon,
+  EditButton,
 } from "@/components/Details/StyledDetails";
 import ProfileForm from "@/components/ProfileForm/ProfileForm";
 
@@ -40,6 +40,7 @@ export default function Profile() {
     const form = event.target;
 
     setSendingForm(true);
+
     const formData = new FormData(form);
     formData.append("file", image);
     formData.append("upload_preset", process.env.NEXT_PUBLIC_UPLOAD_PRESET);
@@ -48,7 +49,7 @@ export default function Profile() {
     const userInput = Object.fromEntries(formData);
     const dbData = createProfileDbData(userInput, imageUrl);
 
-    await patchProfileData(dbData, profile._id);
+    await patchData(dbData, "/api/users/", profile._id);
     form.reset();
     setImage(null);
     setEdit(false);
@@ -63,8 +64,8 @@ export default function Profile() {
       </EditButton>
       {edit ? (
         <ProfileForm
-          profile={profile}
           image={image}
+          profile={profile}
           sendingForm={sendingForm}
           onChangeFile={handleChangeFile}
           onProfileFormSubmit={handleProfileFormSubmit}

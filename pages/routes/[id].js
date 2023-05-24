@@ -51,7 +51,7 @@ export default function Routes({ accessToken, mapStyle }) {
   async function handleEditFormSubmit(event) {
     event.preventDefault();
     const updatedNotes = event.target.elements.notes.value;
-    await patchData({ ...route, notes: updatedNotes }, id);
+    await patchData({ ...route, notes: updatedNotes }, "/api/routes/", id);
     refetchRoute();
     setEdit(false);
   }
