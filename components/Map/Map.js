@@ -12,11 +12,11 @@ export default function Map({
   onCreate,
   onChange,
   isLoading,
+  isSending,
   calculated,
   savedRoute,
   searchValue,
   mapContainer,
-  sendRouteForm,
   searchResults,
   onInputChange,
   onCancelClick,
@@ -53,8 +53,8 @@ export default function Map({
       <RouteForm
         image={image}
         onChange={onChange}
+        isSending={isSending}
         savedRoute={savedRoute}
-        sendRouteForm={sendRouteForm}
         onCancelClick={onCancelClick}
         onRouteSubmit={onRouteSubmit}
       />

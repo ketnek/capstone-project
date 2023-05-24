@@ -9,7 +9,7 @@ export default function TextInput({ id, name, value, onChangeInput }) {
         name={id}
         type="text"
         value={value}
-        onChange={(event) => onChangeInput(event)}
+        onChange={onChangeInput}
       />
     </>
   );

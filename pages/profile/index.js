@@ -20,7 +20,7 @@ export default function Profile() {
   } = useSWR("/api/users");
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState(null);
-  const [sendingForm, setSendingForm] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   function handleEditClick() {
     setEdit(!edit);
@@ -39,7 +39,7 @@ export default function Profile() {
     event.preventDefault();
     const form = event.target;
 
-    setSendingForm(true);
+    setIsSending(true);
 
     const formData = new FormData(form);
     formData.append("file", image);
@@ -47,13 +47,14 @@ export default function Profile() {
 
     const imageUrl = await postImage(formData);
     const userInput = Object.fromEntries(formData);
+    console.log(userInput);
     const dbData = createProfileDbData(userInput, imageUrl);
 
     await patchData(dbData, "/api/users/", profile._id);
     form.reset();
     setImage(null);
     setEdit(false);
-    setSendingForm(false);
+    setIsSending(false);
     refetchProfiles();
   }
 
@@ -66,7 +67,7 @@ export default function Profile() {
         <ProfileForm
           image={image}
           profile={profile}
-          sendingForm={sendingForm}
+          isSending={isSending}
           onChangeFile={handleChangeFile}
           onProfileFormSubmit={handleProfileFormSubmit}
         />

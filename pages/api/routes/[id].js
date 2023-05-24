@@ -16,7 +16,6 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "PATCH") {
-    console.log("TEST");
     try {
       await Route.findByIdAndUpdate(id, {
         $set: request.body,

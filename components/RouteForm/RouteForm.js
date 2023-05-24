@@ -15,8 +15,8 @@ import {
 export default function RouteForm({
   image,
   onChange,
+  isSending,
   savedRoute,
-  sendRouteForm,
   onRouteSubmit,
   onCancelClick,
 }) {
@@ -54,15 +54,11 @@ export default function RouteForm({
         <FileInput labelText="Upload your image" onChangeInput={onChange} />
       </Fieldset>
       <ButtonContainer>
-        <FormButton
-          type="button"
-          onClick={onCancelClick}
-          disabled={sendRouteForm}
-        >
+        <FormButton type="button" onClick={onCancelClick} disabled={isSending}>
           Cancel
         </FormButton>
-        <FormButton disabled={sendRouteForm} type="submit">
-          {sendRouteForm ? "..." : "Save"}
+        <FormButton disabled={isSending} type="submit">
+          {isSending ? "..." : "Save"}
         </FormButton>
       </ButtonContainer>
     </Form>

@@ -12,7 +12,7 @@ import {
 export default function ProfileForm({
   image,
   profile,
-  sendingForm,
+  isSending,
   onChangeFile,
   onProfileFormSubmit,
 }) {
@@ -76,8 +76,8 @@ export default function ProfileForm({
           onChangeInput={handleChangeInput}
         />
       </Fieldset>
-      <SubmitButton disabled={sendingForm} type="submit">
-        {sendingForm ? "..." : "Save"}
+      <SubmitButton disabled={isSending} type="submit">
+        {isSending ? "..." : "Save"}
       </SubmitButton>
     </Form>
   );
