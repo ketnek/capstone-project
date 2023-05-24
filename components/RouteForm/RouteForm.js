@@ -1,9 +1,9 @@
+import FileInput from "../FileInput/FileInput";
 import {
   Form,
   Label,
   Legend,
   Fieldset,
-  FileInput,
   RouteInput,
   FormButton,
   FilePreview,
@@ -51,8 +51,7 @@ export default function RouteForm({
             alt="Preview of the image to upload"
           />
         )}
-        <Label htmlFor="Image">Upload your image</Label>
-        <FileInput onChange={onChange} type="file" id="image" name="image" />
+        <FileInput labelText="Upload your image" onChangeInput={onChange} />
       </Fieldset>
       <ButtonContainer>
         <FormButton

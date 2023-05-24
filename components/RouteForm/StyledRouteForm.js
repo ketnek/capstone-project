@@ -67,8 +67,6 @@ const FilePreview = styled(Image)`
   border-radius: 10px;
 `;
 
-const FileInput = styled.input``;
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -92,7 +90,6 @@ export {
   Label,
   Legend,
   Fieldset,
-  FileInput,
   RouteInput,
   FormButton,
   Description,
