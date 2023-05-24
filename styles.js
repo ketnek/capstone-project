@@ -31,5 +31,4 @@ body {
   font-family: var(--font-family);
   color: var(--dark-gray);
 }
-
 `;

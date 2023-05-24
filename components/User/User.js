@@ -6,6 +6,7 @@ import {
   UserName,
   TableHeadline,
   ProfilePicture,
+  BikeIcon,
 } from "./StyledUser";
 
 export default function User({ profile }) {
@@ -29,6 +30,9 @@ export default function User({ profile }) {
         priority={true}
       />
       <UserName>{userName}</UserName>
+
+      <BikeIcon />
+
       <Table>
         <TableHeadline>
           <tr>
