@@ -1,9 +1,5 @@
-import styled from "styled-components";
+import User from "@/components/User/User";
 
 export default function Routes() {
-  return <Test>Profile Page</Test>;
+  return <User />;
 }
-
-const Test = styled.p`
-  margin-top: 5rem;
-`;

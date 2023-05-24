@@ -6,7 +6,7 @@ import { useState, useRef } from "react";
 import deleteData from "@/lib/deleteData";
 import Details from "@/components/Details/Details";
 
-export default function Routes({ accessToken }) {
+export default function Routes({ accessToken, mapStyle }) {
   const router = useRouter();
   const { id } = router.query;
   const {
@@ -62,6 +62,7 @@ export default function Routes({ accessToken }) {
     <Details
       edit={edit}
       route={route}
+      mapStyle={mapStyle}
       routeCoords={routeCoords}
       accessToken={accessToken}
       onBackClick={handleBackClick}
