@@ -16,8 +16,8 @@ export default createGlobalStyle`
   --dark-gray: #252629;
   --white: white;
   --light-gray: #F2F5F9;
-  --icon-height: 2.5rem;
-  --icon-width: 2.5rem; 
+  --icon-height: 1.5rem;
+  --icon-width: 1.5rem; 
 }
 
 *,

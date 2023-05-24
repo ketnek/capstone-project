@@ -1,9 +1,9 @@
+import FileInput from "../FileInput/FileInput";
 import {
   Form,
   Label,
   Legend,
   Fieldset,
-  FileInput,
   RouteInput,
   FormButton,
   FilePreview,
@@ -15,8 +15,8 @@ import {
 export default function RouteForm({
   image,
   onChange,
+  isSending,
   savedRoute,
-  sendRouteForm,
   onRouteSubmit,
   onCancelClick,
 }) {
@@ -51,19 +51,14 @@ export default function RouteForm({
             alt="Preview of the image to upload"
           />
         )}
-        <Label htmlFor="Image">Upload your image</Label>
-        <FileInput onChange={onChange} type="file" id="image" name="image" />
+        <FileInput labelText="Upload your image" onChangeInput={onChange} />
       </Fieldset>
       <ButtonContainer>
-        <FormButton
-          disabled={sendRouteForm}
-          onClick={onCancelClick}
-          type="button"
-        >
+        <FormButton type="button" onClick={onCancelClick} disabled={isSending}>
           Cancel
         </FormButton>
-        <FormButton disabled={sendRouteForm} type="submit">
-          {sendRouteForm ? "..." : "Save"}
+        <FormButton disabled={isSending} type="submit">
+          {isSending ? "..." : "Save"}
         </FormButton>
       </ButtonContainer>
     </Form>

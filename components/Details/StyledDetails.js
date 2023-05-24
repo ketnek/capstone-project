@@ -15,7 +15,7 @@ const Headline = styled.h2`
 
 const BackButton = styled.button`
   position: absolute;
-  top: 0.6rem;
+  top: 0.4rem;
   left: 1rem;
   z-index: 3;
   background-color: var(--orange);
@@ -23,14 +23,15 @@ const BackButton = styled.button`
 `;
 
 const BackIcon = styled(MdArrowBackIosNew)`
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
+
   color: var(--white);
 `;
 
 const EditButton = styled.button`
   position: absolute;
-  top: 0.3rem;
+  top: 0.2rem;
   right: 1rem;
   z-index: 3;
   background-color: var(--orange);
@@ -38,14 +39,14 @@ const EditButton = styled.button`
 `;
 
 const EditIcon = styled(MdEditNote)`
-  height: 2.2rem;
-  width: 2.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
   color: var(--white);
 `;
 
 const CancelIcon = styled(MdOutlineClear)`
-  height: 2.2rem;
-  width: 2.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
   color: var(--white);
 `;
 

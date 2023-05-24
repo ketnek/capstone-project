@@ -6,7 +6,7 @@ const PageHeader = styled.header`
   left: 0;
   right: 0;
   z-index: 2;
-  height: 3rem;
+  height: 2.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@ const PageHeader = styled.header`
 `;
 
 const Headline = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin: 0;
 `;
 

@@ -62,12 +62,10 @@ const NotesTextarea = styled.textarea`
 `;
 
 const FilePreview = styled(Image)`
-  object-fit: fill;
+  object-fit: cover;
   margin: 1rem auto 0 auto;
   border-radius: 10px;
 `;
-
-const FileInput = styled.input``;
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -92,7 +90,6 @@ export {
   Label,
   Legend,
   Fieldset,
-  FileInput,
   RouteInput,
   FormButton,
   Description,

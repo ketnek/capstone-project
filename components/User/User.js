@@ -8,17 +8,27 @@ import {
   ProfilePicture,
 } from "./StyledUser";
 
-export default function User() {
+export default function User({ profile }) {
+  const {
+    bought,
+    mileage,
+    bikeName,
+    userName,
+    bikeType,
+    profileImg,
+    lastService,
+  } = profile;
+
   return (
     <>
       <ProfilePicture
-        src="https://res.cloudinary.com/my-capstone-project/image/upload/v1684829895/cndqt5vyxdlukbn40iin.jpg"
+        src={profileImg}
         alt="profile picture"
         width={175}
         height={175}
         priority={true}
       />
-      <UserName>Kevin Ketner</UserName>
+      <UserName>{userName}</UserName>
       <Table>
         <TableHeadline>
           <tr>
@@ -28,23 +38,23 @@ export default function User() {
         <TBody>
           <tr>
             <TProp>Bike Name:</TProp>
-            <TValue>Cube Aim Allroad</TValue>
+            <TValue>{bikeName}</TValue>
           </tr>
           <tr>
             <TProp>Type:</TProp>
-            <TValue>Hardtail MTB</TValue>
+            <TValue>{bikeType}</TValue>
           </tr>
           <tr>
             <TProp>Bought:</TProp>
-            <TValue>April 2023</TValue>
+            <TValue>{bought}</TValue>
           </tr>
           <tr>
             <TProp>Mileage:</TProp>
-            <TValue>100km</TValue>
+            <TValue>{mileage}</TValue>
           </tr>
           <tr>
             <TProp>Last Service:</TProp>
-            <TValue>4/20/2023</TValue>
+            <TValue>{lastService}</TValue>
           </tr>
         </TBody>
       </Table>

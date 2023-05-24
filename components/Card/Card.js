@@ -13,7 +13,11 @@ import DetailsDisplay from "../DetailsDisplay/DetailsDisplay.js";
 
 export default function Card({ routes, refetchRoutes }) {
   async function handleFavoriteClick(routeData, id) {
-    await patchData({ ...routeData, favorite: !routeData.favorite }, id);
+    await patchData(
+      { ...routeData, favorite: !routeData.favorite },
+      "/api/routes/",
+      id
+    );
     refetchRoutes();
   }
 
@@ -40,8 +44,8 @@ export default function Card({ routes, refetchRoutes }) {
           </HeadlineContainer>
           <RouteImage
             src={route.image}
-            width={300}
-            height={150}
+            width={250}
+            height={100}
             priority={true}
             alt={route.name}
           />

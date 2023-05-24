@@ -9,7 +9,7 @@ const Footer = styled.footer`
   left: 0;
   right: 0;
   z-index: 2;
-  height: 4rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,8 +26,17 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
   color: ${(props) =>
     props.isactive === "true" ? "var(--dark-gray)" : "var(--white)"};
+`;
+
+const LinkName = styled.p`
+  font-size: 0.7rem;
+  margin: 0;
 `;
 
 const MapIcon = styled(IoMapOutline)`
@@ -47,4 +56,13 @@ const BikeIcon = styled(IoBicycle)`
   width: var(--icon-width);
 `;
 
-export { Footer, Nav, NavLink, MapIcon, RouteIcon, StarIcon, BikeIcon };
+export {
+  Footer,
+  Nav,
+  NavLink,
+  LinkName,
+  MapIcon,
+  RouteIcon,
+  StarIcon,
+  BikeIcon,
+};

@@ -6,6 +6,7 @@ import {
   StarIcon,
   BikeIcon,
   RouteIcon,
+  LinkName,
 } from "./StyledNavigation";
 
 export default function Navigation({ activePage }) {
@@ -14,6 +15,7 @@ export default function Navigation({ activePage }) {
       <Nav>
         <NavLink isactive={activePage === "/" ? "true" : "false"} href="/">
           <MapIcon />
+          <LinkName>Map</LinkName>
         </NavLink>
 
         <NavLink
@@ -21,6 +23,7 @@ export default function Navigation({ activePage }) {
           href="/routes"
         >
           <RouteIcon />
+          <LinkName>Routes</LinkName>
         </NavLink>
 
         <NavLink
@@ -28,6 +31,7 @@ export default function Navigation({ activePage }) {
           href="/routes/favorites"
         >
           <StarIcon />
+          <LinkName>Favorites</LinkName>
         </NavLink>
 
         <NavLink
@@ -35,6 +39,7 @@ export default function Navigation({ activePage }) {
           href="/profile"
         >
           <BikeIcon />
+          <LinkName>Profile</LinkName>
         </NavLink>
       </Nav>
     </Footer>

@@ -6,7 +6,7 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 const Info = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   margin: 0.8rem 0;
   padding: 0 0.5rem;
   border-radius: 10px;
