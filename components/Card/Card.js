@@ -40,8 +40,8 @@ export default function Card({ routes, refetchRoutes }) {
           </HeadlineContainer>
           <RouteImage
             src={route.image}
-            width={300}
-            height={150}
+            width={250}
+            height={100}
             priority={true}
             alt={route.name}
           />

@@ -62,7 +62,7 @@ const NotesTextarea = styled.textarea`
 `;
 
 const FilePreview = styled(Image)`
-  object-fit: fill;
+  object-fit: cover;
   margin: 1rem auto 0 auto;
   border-radius: 10px;
 `;

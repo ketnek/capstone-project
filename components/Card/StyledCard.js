@@ -16,7 +16,7 @@ const List = styled.ul`
 
 const Item = styled.li`
   list-style: none;
-  width: 90%;
+  width: 80%;
   border-radius: 10px;
   box-shadow: 0 0 5px 1px;
   position: relative;
@@ -30,7 +30,8 @@ const HeadlineContainer = styled.div`
 `;
 
 const Headline = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1rem;
+  margin: 0.3rem;
   align-self: flex-start;
 `;
 
@@ -43,6 +44,7 @@ const RouteLink = styled(Link)`
 `;
 
 const RouteImage = styled(Image)`
+  object-fit: cover;
   border-radius: 10px;
 `;
 
