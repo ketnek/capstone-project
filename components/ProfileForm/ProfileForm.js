@@ -3,20 +3,28 @@ import { useState } from "react";
 import TextInput from "../TextInput/TextInput";
 import FileInput from "../FileInput/FileInput";
 
-export default function ProfileForm({ profiles, image }) {
-  const [profile, setProfile] = useState(profiles[0]);
-  const { profileImg, bikeName, type, bought, mileage, lastService } = profile;
+export default function ProfileForm({
+  image,
+  profile,
+  onChangeFile,
+  sendingForm,
+  onProfileFormSubmit,
+}) {
+  const [inputValue, setInputValue] = useState(profile);
+  const { profileImg, bikeName, bikeType, bought, mileage, lastService } =
+    inputValue;
 
-  function handleChangeFile(event) {
-    // setImage(event.target.files[0]);
-    console.log("File changed");
-  }
   function handleChangeInput(event) {
-    console.log("Hallo");
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setInputValue((prevValue) => {
+      return { ...prevValue, [name]: value };
+    });
   }
 
   return (
-    <Form>
+    <Form onSubmit={onProfileFormSubmit}>
       <Fieldset>
         <Legend>Update your Profile</Legend>
         <FilePreview
@@ -28,19 +36,19 @@ export default function ProfileForm({ profiles, image }) {
 
         <FileInput
           labelText="Upload profile image"
-          onChangeInput={handleChangeFile}
+          onChangeInput={onChangeFile}
         />
 
         <TextInput
-          id="bike-name"
+          id="bikeName"
           name="Bike Name:"
           value={bikeName}
           onChangeInput={handleChangeInput}
         />
         <TextInput
-          id="type"
+          id="bikeType"
           name="Type:"
-          value={type}
+          value={bikeType}
           onChangeInput={handleChangeInput}
         />
         <TextInput
@@ -56,12 +64,15 @@ export default function ProfileForm({ profiles, image }) {
           onChangeInput={handleChangeInput}
         />
         <TextInput
-          id="last-service"
+          id="lastService"
           name="Last Service:"
           value={lastService}
           onChangeInput={handleChangeInput}
         />
       </Fieldset>
+      <button disabled={sendingForm} type="submit">
+        {sendingForm ? "..." : "Save"}
+      </button>
     </Form>
   );
 }

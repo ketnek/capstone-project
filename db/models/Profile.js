@@ -6,7 +6,7 @@ const profileSchema = new Schema({
   userName: { type: String, required: true },
   profileImg: { type: String },
   bikeName: { type: String },
-  type: { type: String },
+  bikeType: { type: String },
   bought: { type: String },
   mileage: { type: String },
   lastService: { type: String },

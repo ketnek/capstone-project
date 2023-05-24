@@ -8,9 +8,16 @@ import {
   ProfilePicture,
 } from "./StyledUser";
 
-export default function User({ profiles, refetchProfiles }) {
-  const { profileImg, userName, bikeName, type, bought, mileage, lastService } =
-    profiles[0];
+export default function User({ profile }) {
+  const {
+    profileImg,
+    userName,
+    bikeName,
+    bikeType,
+    bought,
+    mileage,
+    lastService,
+  } = profile;
 
   return (
     <>
@@ -35,7 +42,7 @@ export default function User({ profiles, refetchProfiles }) {
           </tr>
           <tr>
             <TProp>Type:</TProp>
-            <TValue>{type}</TValue>
+            <TValue>{bikeType}</TValue>
           </tr>
           <tr>
             <TProp>Bought:</TProp>
