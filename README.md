@@ -1,6 +1,6 @@
-# Capstone Project Template
+# Capstone Project
 
-This project was created from the neuefische Next.js template.
+https://github.com/ketnek/capstone-project/assets/113082466/4bb025c6-a42c-438f-a0f4-a2539057403a
 
 ## Local development
 
